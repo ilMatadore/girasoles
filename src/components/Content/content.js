@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -8,29 +8,19 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import StarIcon from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Image from "../../images/marisol-benitez-QvkAQTNj4zk-unsplash.jpg";
+import Image2 from "../../images/ja-ma--gOUx23DNks-unsplash.jpg";
+import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
-import Image from "../../images/IMG-20200830-WA0032.jpg";
+import AOS from "aos";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
-import { CartContext } from "../../context/cartContext/cartContext";
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -53,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 1.5),
   },
   heroContent: {
-    padding: theme.spacing(8, 0, 6),
+    padding: theme.spacing(10, 4, 6),
   },
   cardHeader: {
     backgroundColor:
@@ -76,6 +66,69 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
+  paper: {
+    padding: theme.spacing(3),
+    textAlign: "left",
+    color: theme.palette.text.secondary,
+    verticalAlign: "middle",
+    marginTop: "10px",
+    backgroundColor: "transparent",
+  },
+
+  paper2: {
+    verticalAlign: "middle",
+    marginTop: "20px",
+    display: "block",
+    backgroundColor: "transparent",
+  },
+
+  cardAddItem: {
+    borderRadius: "50%",
+    width: "60px",
+    height: "60px",
+    backgroundColor: "#235e1b",
+    color: "yellow",
+    "&:hover": {
+      backgroundColor: "yellow",
+      color: "#235e1b",
+      boxShadow: "0 0 15px #666666",
+    },
+  },
+  additionalAdd: {
+    borderRadius: "50%",
+    height: "60px",
+    backgroundColor: "#235e1b",
+    color: "yellow",
+    "&:hover": {
+      backgroundColor: "yellow",
+      color: "#235e1b",
+      boxShadow: "0 0 15px #666666",
+    },
+  },
+  homeBox: {
+    color: "white",
+    height: "100vh",
+    width: "40%",
+    margin: "auto",
+    paddingTop: "350px",
+  },
+  homeBoxResp: {
+    color: "white",
+    height: "100vh",
+    width: "70%",
+    margin: "auto",
+    paddingTop: "350px",
+  },
+  homeBoxText: {
+    color: "white",
+    fontFamily: "Leckerli",
+    fontSize: "75px",
+  },
+  homeBoxTextResp: {
+    color: "white",
+    fontFamily: "Leckerli",
+    fontSize: "50px",
+  },
 }));
 
 const tiers = [
@@ -87,7 +140,7 @@ const tiers = [
       "1 zapallo cabutia",
       "1 kg papa",
       "1 kg boniato",
-      "1 atado de verdeo,",
+      "1 atado de verdeo",
     ],
     buttonText: "Agregar al carro",
     buttonVariant: "contained",
@@ -120,40 +173,71 @@ const tiers = [
     buttonVariant: "contained",
   },
 ];
-const footers = [
+
+const adicionales = [
   {
-    title: "Company",
-    description: ["Team", "History", "Contact us", "Locations"],
+    title: "Miel",
+    id: 4,
+    price: "100",
+    description: ["1/2 kg Organica"],
+    buttonText: "Agregar al carro",
+    buttonVariant: "contained",
   },
   {
-    title: "Features",
-    description: [
-      "Cool stuff",
-      "Random feature",
-      "Team feature",
-      "Developer stuff",
-      "Another one",
-    ],
+    title: "Mizuna",
+    id: 5,
+    price: "45",
+    description: [],
+    buttonText: "Agregar al carro",
+    buttonVariant: "contained",
   },
   {
-    title: "Resources",
-    description: [
-      "Resource",
-      "Resource name",
-      "Another resource",
-      "Final resource",
-    ],
+    title: "Mostaza",
+    id: 6,
+    price: "45",
+    description: [],
+    buttonText: "Agregar al carro",
+    buttonVariant: "contained",
   },
   {
-    title: "Legal",
-    description: ["Privacy policy", "Terms of use"],
+    title: "Kale",
+    id: 7,
+    price: "55",
+    description: [],
+    buttonText: "Agregar al carro",
+    buttonVariant: "contained",
+  },
+  {
+    title: "Cilantro",
+    id: 8,
+    price: "45",
+    description: [],
+    buttonText: "Agregar al carro",
+    buttonVariant: "contained",
+  },
+  {
+    title: "Perejil",
+    id: 9,
+    price: "45",
+    description: [],
+    buttonText: "Agregar al carro",
+    buttonVariant: "contained",
   },
 ];
 
 export default function Pricing() {
+  const matches = useMediaQuery("(min-width:960px)");
+  useEffect(() => {
+    AOS.init({
+      duration: 2000,
+    });
+    AOS.refresh();
+  }, []);
+
   const classes = useStyles();
 
   const cartCtx = useContext(CartContext);
+  console.log(cartCtx);
 
   return (
     <React.Fragment>
@@ -161,15 +245,40 @@ export default function Pricing() {
       <Container
         maxWidth="xl"
         style={{
-          height: "70vh",
+          height: "100vh",
           backgroundImage: `url(${Image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-      ></Container>
+      >
+        <Box
+          component="div"
+          variant="h2"
+          align="center"
+          color="textPrimary"
+          gutterBottom
+          className={matches ? classes.homeBox : classes.homeBoxResp}
+        >
+          <Typography
+            className={matches ? classes.homeBoxText : classes.homeBoxTextResp}
+            component="h1"
+            variant="h2"
+            align="center"
+            color="textPrimary"
+            gutterBottom
+            //data-aos="zoom-out"
+          >
+            Productos Orgánicos<br></br>de la Tierra a tu Hogar
+          </Typography>
+          <Button variant="contained" color="primary" href="#canastas">
+            Hace tu pedido
+          </Button>
+        </Box>
+      </Container>
       {/* Hero unit */}
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography
+          id="canastas"
           component="h1"
           variant="h2"
           align="center"
@@ -184,7 +293,8 @@ export default function Pricing() {
           color="textSecondary"
           component="p"
         >
-          Selecciona la canasta de productos organicos que mas gustes...
+          Selecciona primero una o mas de nuestras canastas de productos
+          organicos que mas gustes...
         </Typography>
       </Container>
       {/* End hero unit */}
@@ -193,6 +303,7 @@ export default function Pricing() {
           {tiers.map((tier) => (
             // Enterprise card is full width at sm breakpoint
             <Grid
+              data-aos="zoom-in"
               item
               key={tier.title}
               xs={12}
@@ -230,17 +341,10 @@ export default function Pricing() {
                 </CardContent>
                 <CardActions style={{ display: "block" }}>
                   <Button
+                    className={classes.cardAddItem}
                     variant={tier.buttonVariant}
-                    style={{
-                      borderRadius: "50%",
-                      width: "60px",
-                      height: "60px",
-                      backgroundColor: "#235e1b",
-                      color: "yellow",
-                    }}
                     onClick={() => {
-                      cartCtx.addToCart(tier);
-                      console.log(tier);
+                      cartCtx.addItem(tier);
                     }}
                   >
                     <AddShoppingCartIcon fontSize="large" />
@@ -251,11 +355,63 @@ export default function Pricing() {
           ))}
         </Grid>
       </Container>
+      <Container maxWidth="sm" component="main" className={classes.heroContent}>
+        <Typography
+          variant="h5"
+          align="center"
+          color="textSecondary"
+          component="p"
+          style={{ marginBottom: "20px" }}
+        >
+          Opcionalmente puedes agregar los siguientes productos a tu pedido..
+        </Typography>
+        <Grid variant="outlined">
+          {adicionales.map((item) => (
+            <Grid container spacing={2} data-aos="fade-left">
+              <Grid item xs={10} data-aos="fade-right">
+                <Paper className={classes.paper}>
+                  <Typography component="a" variant="h5">
+                    {item.title}
+                  </Typography>{" "}
+                  <Typography component="a" variant="a">
+                    {item.description}
+                  </Typography>
+                  <span
+                    style={{
+                      float: "right",
+                      paddingRight: "10px",
+                    }}
+                  >
+                    <Typography component="a" variant="h5">
+                      ${item.price}
+                    </Typography>
+                  </span>
+                </Paper>
+              </Grid>
+              <Grid item xs={2}>
+                <Paper elevation={0} className={classes.paper2}>
+                  <Button
+                    className={classes.additionalAdd}
+                    variant={item.buttonVariant}
+                    onClick={() => {
+                      cartCtx.addItem(item);
+                      console.log(item);
+                    }}
+                  >
+                    <AddShoppingCartIcon fontSize="medium" />
+                  </Button>
+                </Paper>
+              </Grid>
+            </Grid>
+          ))}
+        </Grid>
+      </Container>
+
       <Container
-        maxWidth="md"
+        maxWidth="lg"
         style={{
           display: "flex",
-          justifyContent: "center",
+          justifyContent: "space-around",
           alignItems: "center",
           paddingTop: "30px",
         }}
@@ -265,36 +421,36 @@ export default function Pricing() {
           align="center"
           color="textSecondary"
           component="p"
-          style={{ textAlign: "center", lineHeight: "100px" }}
+          style={{
+            lineHeight: "100px",
+          }}
         >
-          Seguinos en <InstagramIcon fontSize="large" />
+          Seguinos en{" "}
+          <InstagramIcon fontSize="large" style={{ verticalAlign: "middle" }} />
+        </Typography>
+        <Typography
+          variant="h5"
+          align="center"
+          color="textSecondary"
+          component="p"
+          style={{
+            lineHeight: "100px",
+          }}
+        >
+          Por consultas{" "}
+          <WhatsAppIcon fontSize="large" style={{ verticalAlign: "middle" }} />
         </Typography>
       </Container>
-      {/* Footer */}
-      <Container maxWidth="md" component="footer" className={classes.footer}>
-        <Grid container spacing={4} justify="space-evenly">
-          {footers.map((footer) => (
-            <Grid item xs={6} sm={3} key={footer.title}>
-              <Typography variant="h6" color="textPrimary" gutterBottom>
-                {footer.title}
-              </Typography>
-              <ul>
-                {footer.description.map((item) => (
-                  <li key={item}>
-                    <Link href="#" variant="subtitle1" color="textSecondary">
-                      {item}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </Grid>
-          ))}
-        </Grid>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
-      </Container>
-      {/* End footer */}
+      <Container
+        maxWidth="xl"
+        style={{
+          marginTop: "50px",
+          backgroundImage: `url(${Image2})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          height: "50vh",
+        }}
+      ></Container>
     </React.Fragment>
   );
 }

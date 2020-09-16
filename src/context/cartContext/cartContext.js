@@ -57,9 +57,11 @@ export const CartProvider = (props) => {
   }
 
   function removeItem(item) {
-    console.log(item);
-
-    return item;
+    // const filteredCart = cart.filter((items) => items !== item);
+    cart.splice(item, 1);
+    setCart([cart]);
+    console.log(cart);
+    return;
   }
 
   return (

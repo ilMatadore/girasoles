@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import "./App.css";
 import { Switch, Route, withRouter, useHistory } from "react-router-dom";
 
-import { CartProvider } from "./context/cartContext/cartContext";
+import CartProvider from "./context/cartContext/cartContext2.jsx";
 
 import ButtonAppBar from "./components/header/header";
 import Pricing from "./components/Content/content";
 import SignIn from "./components/signIn/signIn";
 import SignUp from "./components/signUp/signUp";
+import Checkout from "./components/checkout/checkout";
+import Footer from "./components/footer/footer";
+import Profile from "./components/profile/profile";
+import TemporaryDrawer from "./components/Drawer/drawer";
 
 function App() {
   const [loginEmail, setLoginEmail] = useState("");
@@ -103,7 +107,11 @@ function App() {
             path="/register"
             render={() => <SignUp handleLogIn={handleLogIn} />}
           />
+          <Route exact path="/checkout" component={Checkout} />
+          <Route exact path="/profile" component={Profile} />
         </Switch>
+        <TemporaryDrawer />
+        <Footer />
       </div>
     </CartProvider>
   );

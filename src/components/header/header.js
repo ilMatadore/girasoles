@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -10,10 +10,12 @@ import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import Image from "../../images/logo3.png";
 import Cart from "../cart/cart";
+import SimpleMenu from "../UserMenu/userMenu";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
-import InstagramIcon from "@material-ui/icons/Instagram";
-import WhatsAppIcon from "@material-ui/icons/WhatsApp";
+
+import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -25,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     flexGrow: 1,
+    backgroundColor: "transparent",
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -34,23 +37,26 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   appBar: {
-    borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundColor: "transparent",
+    paddingTop: "10px",
   },
   toolbar: {
     flexWrap: "wrap",
-    backgroundColor: "#eec47c",
+    //backgroundColor: "#eec47c",
   },
   toolbarTitle: {
-    width: "400px",
+    width: "200px",
     flexGrow: 1,
     textAlign: "left",
     fontFamily: "Leckerli One",
-    color: "#235e1b",
+    //color: "#235e1b",
+    color: "#eec47c",
     fontSize: "42px",
   },
   link: {
     margin: theme.spacing(1, 1.5),
-    color: "#235e1b",
+    //color: "#235e1b",
+    color: "#eec47c",
     cursor: "pointer",
   },
   logo: {
@@ -61,6 +67,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left",
   },
+  navHide: {
+    display: "none",
+  },
 }));
 
 export default function ButtonAppBar({
@@ -70,16 +79,14 @@ export default function ButtonAppBar({
   backHome,
 }) {
   const classes = useStyles();
-
+  const matches = useMediaQuery("(min-width:960px");
   const [showCart, setShowCart] = useState(false);
 
   const hideCart = () => {
-    if (showCart === false) {
-      setShowCart(true);
-    } else {
-      setShowCart(false);
-    }
+    setShowCart(!showCart);
   };
+
+  const cartx = useContext(CartContext);
 
   return (
     <Container className={classes.root}>
@@ -89,25 +96,7 @@ export default function ButtonAppBar({
           <Typography color="inherit" noWrap className={classes.toolbarTitle}>
             Los Girasoles
           </Typography>
-          <Link>
-            <InstagramIcon
-              variant="button"
-              fontSize="large"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            />
-          </Link>
-          <Link>
-            <WhatsAppIcon
-              variant="button"
-              fontSize="large"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            />
-          </Link>
-          <nav>
+          <nav className={matches ? null : classes.navHide}>
             <Link
               variant="button"
               color="textPrimary"
@@ -133,15 +122,24 @@ export default function ButtonAppBar({
             >
               Contacto
             </Link>
-            <Link
-              variant="button"
-              color="inherit"
-              href="#"
-              className={classes.link}
-            >
-              {currentUser.id ? `Bienvenido ${currentUser.first_name}` : ""}
-            </Link>
+            {currentUser.id ? (
+              <SimpleMenu
+                currentUser={currentUser}
+                handleLogout={handleLogout}
+              />
+            ) : null}
+            {!currentUser.id ? (
+              <Button
+                color="inherit"
+                variant="outlined"
+                className={classes.link}
+                onClick={currentUser.id ? handleLogout : handleLogIn}
+              >
+                {currentUser.id ? "Cerrar Sesion" : "Iniciar Sesion"}
+              </Button>
+            ) : null}
           </nav>
+
           <Link
             variant="button"
             color="inherit"
@@ -151,15 +149,10 @@ export default function ButtonAppBar({
             }}
           >
             <ShoppingCartOutlinedIcon fontSize="large" />
+            <span style={{ verticalAlign: "middle" }}>
+              ({cartx.cartItemsCount})
+            </span>
           </Link>
-          <Button
-            href="#"
-            variant="outlined"
-            className={classes.link}
-            onClick={currentUser.id ? handleLogout : handleLogIn}
-          >
-            {currentUser.id ? "Cerrar Sesion" : "Iniciar Sesion"}
-          </Button>
           <IconButton
             edge="start"
             className={classes.menuButton}
@@ -170,7 +163,7 @@ export default function ButtonAppBar({
           </IconButton>
           {showCart ? (
             <nav>
-              <Cart />
+              <Cart hideCart={hideCart} />
             </nav>
           ) : null}
         </Toolbar>

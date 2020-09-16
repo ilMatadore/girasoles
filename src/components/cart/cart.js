@@ -1,13 +1,17 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../context/cartContext/cartContext";
+import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 
 import { useHistory } from "react-router-dom";
 
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
+import CloseIcon from "@material-ui/icons/Close";
+
 const useStyles = makeStyles((theme) => ({
   "@global": {
     button: {
-      width: "100%",
+      width: "50%",
       height: "40px",
       fontSize: "20px",
     },
@@ -27,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     height: "340px",
     display: "flex",
     flexDirection: "column",
-    padding: "20px",
+    padding: "15px",
     border: "1px solid black",
     backgroundColor: "white",
     top: "90px",
@@ -35,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: 5,
     fontSize: "15px",
     color: "black",
+    borderRadius: "5px",
   },
   cartHeader: {
     display: "flex",
@@ -56,58 +61,82 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   cartButton: {
-    display: "flex",
     alignItems: "flex-end",
     marginBottom: 0,
     height: "10%",
     color: "black",
+    alignContent: "center",
   },
   blueTable: {
     width: "100%",
     fontSize: "16px",
   },
+  scrollbar: {
+    height: "80%",
+    overflow: "scroll",
+    width: "100%",
+    overflowX: "hidden",
+    "*::-webkit-scrollbar-track": {
+      "-webkit-box-shadow": "inset 0 0 6px rgba(0,0,0,0.3)",
+    },
+    "*::-webkit-scrollbar-thumb": {
+      backgroundColor: "#F5F5F5",
+      outline: "1px solid #555555",
+    },
+  },
 }));
 
-const Cart = () => {
+const Cart = ({ hideCart }) => {
   const classes = useStyles();
   const history = useHistory();
 
   const ctx = useContext(CartContext);
 
-  function totalPrice(items) {
-    if (items.length === 0) {
-      return 0;
-    } else {
-      return items.reduce(
-        (acc, item) => acc + item[0].quantity * item[0].price,
-        0
-      );
-    }
-  }
   return (
     <div className={classes.cartDropDown}>
-      <div style={{ height: "60%" }}>
+      <div className={classes.scrollbar}>
         <table className={classes.blueTable}>
           <thead>
             <tr>
               <th style={{ textAlign: "left" }}>Producto</th>
               <th style={{ textAlign: "center" }}>Cantidad</th>
               <th style={{ textAlign: "right" }}>Precio</th>
+              <th style={{ textAlign: "right" }}> </th>
             </tr>
           </thead>
           <tbody>
-            {ctx.cart.length === 0 ? (
-              <tr style={{ lineHeight: "150px" }}>
+            {ctx.cartItems.length === 0 ? (
+              <tr style={{ lineHeight: "120px" }}>
                 <td colSpan="3">Su carro esta vacio</td>
               </tr>
             ) : (
-              ctx.cart.map((item) => (
-                <tr key={item[0].id}>
-                  <td style={{ textAlign: "left" }}>{item[0].title}</td>
+              ctx.cartItems.map((item) => (
+                <tr key={item.id}>
+                  <td style={{ textAlign: "left" }}>{item.title}</td>
                   <td style={{ textAlign: "center" }}>
-                    + {item[0].quantity} -
+                    <span
+                      style={{ cursor: "pointer", verticalAlign: "middle" }}
+                      onClick={() => ctx.addItem(item)}
+                    >
+                      <ArrowDropUpIcon />
+                    </span>{" "}
+                    {item.quantity}{" "}
+                    <span
+                      style={{ cursor: "pointer", verticalAlign: "middle" }}
+                      onClick={() => ctx.removeItem(item)}
+                    >
+                      <ArrowDropDownIcon />
+                    </span>
                   </td>
-                  <td style={{ textAlign: "right" }}>{item[0].price}</td>
+                  <td style={{ textAlign: "right", verticalAlign: "middle" }}>
+                    ${item.price}
+                  </td>
+                  <td
+                    style={{ cursor: "pointer" }}
+                    onClick={() => ctx.clearItemFromCart(item)}
+                  >
+                    <CloseIcon fontSize="small" />
+                  </td>
                 </tr>
               ))
             )}
@@ -117,10 +146,10 @@ const Cart = () => {
       <br />
       <div style={{ height: "30%" }}>
         <div className={classes.cartTotals}>
-          Productos en el carro : {ctx.totalItems(ctx.cart)}
+          Productos en el carro : {ctx.cartItemsCount}
         </div>
         <div className={classes.cartTotals}>
-          Precio Total : ${totalPrice(ctx.cart)}
+          Precio Total : ${ctx.cartTotal}
         </div>
       </div>
       <div className={classes.cartButton} style={{ height: "10%" }}>
@@ -130,7 +159,10 @@ const Cart = () => {
             backgroundColor: "#235e1b",
             color: "yellow",
           }}
-          onClick={() => history.push("/checkout")}
+          onClick={() => {
+            history.push("/checkout");
+            hideCart();
+          }}
         >
           Comprar
         </button>
