@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     width: "70%",
     margin: "auto",
-    paddingTop: "350px",
+    paddingTop: "275px",
   },
   homeBoxText: {
     color: "white",
@@ -237,7 +237,6 @@ export default function Pricing() {
   const classes = useStyles();
 
   const cartCtx = useContext(CartContext);
-  console.log(cartCtx);
 
   return (
     <React.Fragment>
@@ -367,8 +366,8 @@ export default function Pricing() {
         </Typography>
         <Grid variant="outlined">
           {adicionales.map((item) => (
-            <Grid container spacing={2} data-aos="fade-left">
-              <Grid item xs={10} data-aos="fade-right">
+            <Grid container spacing={2}>
+              <Grid item xs={10} data-aos="fade-up">
                 <Paper className={classes.paper}>
                   <Typography component="a" variant="h5">
                     {item.title}
@@ -391,6 +390,7 @@ export default function Pricing() {
               <Grid item xs={2}>
                 <Paper elevation={0} className={classes.paper2}>
                   <Button
+                    data-aos="fade-down"
                     className={classes.additionalAdd}
                     variant={item.buttonVariant}
                     onClick={() => {
