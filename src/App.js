@@ -11,7 +11,7 @@ import SignUp from "./components/signUp/signUp";
 import Checkout from "./components/checkout/checkout";
 import Footer from "./components/footer/footer";
 import Profile from "./components/profile/profile";
-import TemporaryDrawer from "./components/Drawer/drawer";
+//import TemporaryDrawer from "./components/Drawer/drawer";
 
 function App() {
   const [loginEmail, setLoginEmail] = useState("");
@@ -110,7 +110,7 @@ function App() {
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/profile" component={Profile} />
         </Switch>
-        <TemporaryDrawer />
+
         <Footer />
       </div>
     </CartProvider>

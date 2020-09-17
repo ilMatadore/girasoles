@@ -29,9 +29,12 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: "transparent",
   },
-  menuButton: {
+  menuButtonHide: {
     marginRight: theme.spacing(2),
     display: "none",
+  },
+  menuButtonDisplay: {
+    marginRight: theme.spacing(2),
   },
   title: {
     flexGrow: 1,
@@ -53,6 +56,15 @@ const useStyles = makeStyles((theme) => ({
     color: "#eec47c",
     fontSize: "42px",
   },
+  toolbarTitleResp: {
+    width: "100px",
+    flexGrow: 1,
+    textAlign: "left",
+    fontFamily: "Leckerli One",
+    //color: "#235e1b",
+    color: "#eec47c",
+    fontSize: "24px",
+  },
   link: {
     margin: theme.spacing(1, 1.5),
     //color: "#235e1b",
@@ -62,6 +74,14 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     height: "90px",
     width: "100px",
+    backgroundImage: `url(${Image})`,
+    backgroundSize: "contain",
+    backgroundRepeat: "no-repeat",
+    backgroundPosition: "left",
+  },
+  logoResp: {
+    height: "70px",
+    width: "80px",
     backgroundImage: `url(${Image})`,
     backgroundSize: "contain",
     backgroundRepeat: "no-repeat",
@@ -92,8 +112,16 @@ export default function ButtonAppBar({
     <Container className={classes.root}>
       <AppBar position="fixed" elevation={0} className={classes.appBar}>
         <Toolbar className={classes.toolbar}>
-          <Container className={classes.logo}></Container>
-          <Typography color="inherit" noWrap className={classes.toolbarTitle}>
+          <Container
+            className={matches ? classes.logo : classes.logoResp}
+          ></Container>
+          <Typography
+            color="inherit"
+            noWrap
+            className={
+              matches ? classes.toolbarTitle : classes.toolbarTitleResp
+            }
+          >
             Los Girasoles
           </Typography>
           <nav className={matches ? null : classes.navHide}>
@@ -159,7 +187,11 @@ export default function ButtonAppBar({
             color="inherit"
             aria-label="menu"
           >
-            <MenuIcon />
+            <MenuIcon
+              className={
+                matches ? classes.menuButtonHide : classes.menuButtonDisplay
+              }
+            ></MenuIcon>
           </IconButton>
           {showCart ? (
             <nav>

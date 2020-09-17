@@ -172,7 +172,10 @@ export default function Profile() {
           </Button>
         </div>
       </div>
-      <Container>
+      <Container className={classes.paper}>
+        <Avatar className={classes.avatar}>
+          <LockOutlinedIcon />
+        </Avatar>
         <Typography component="h1" variant="h5">
           Mis Pedidos
         </Typography>
