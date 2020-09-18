@@ -111,7 +111,7 @@ export default function Header2({
       onClose={handleMenuClose}
     >
       {currentUser.id ? (
-        <React.Fragment>
+        <div>
           <MenuItem
             onClick={() => {
               handleMenuClose();
@@ -128,7 +128,7 @@ export default function Header2({
           >
             Cerrar Sesión
           </MenuItem>
-        </React.Fragment>
+        </div>
       ) : (
         <MenuItem
           onClick={() => {
@@ -190,7 +190,7 @@ export default function Header2({
         <p>Mi Carro</p>
       </MenuItem>
       {currentUser.id ? (
-        <React.Fragment>
+        <div>
           <MenuItem onClick={handleProfileMenuOpen}>
             <IconButton
               aria-label="account of current user"
@@ -202,9 +202,9 @@ export default function Header2({
             </IconButton>
             <p>{currentUser.first_name}</p>
           </MenuItem>
-        </React.Fragment>
+        </div>
       ) : (
-        <React.Fragment>
+        <div>
           <MenuItem
             onClick={() => {
               handleMenuClose();
@@ -221,14 +221,14 @@ export default function Header2({
             </IconButton>
             <p>Iniciar Sesion</p>
           </MenuItem>
-        </React.Fragment>
+        </div>
       )}
     </Menu>
   );
 
   return (
     <div className={classes.grow}>
-      <AppBar position="absolute" elevation="0" className={classes.appBar}>
+      <AppBar position="absolute" elevation={0} className={classes.appBar}>
         <Toolbar>
           <IconButton
             edge="start"
