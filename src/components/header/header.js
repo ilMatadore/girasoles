@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -9,13 +9,18 @@ import MenuIcon from "@material-ui/icons/Menu";
 import Link from "@material-ui/core/Link";
 import Container from "@material-ui/core/Container";
 import Image from "../../images/logo3.png";
-import Cart from "../cart/cart";
+
+import Box from "@material-ui/core/Box";
 import SimpleMenu from "../UserMenu/userMenu";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
+
+import useScrollTrigger from "@material-ui/core/useScrollTrigger";
+import Slide from "@material-ui/core/Slide";
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -35,6 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButtonDisplay: {
     marginRight: theme.spacing(2),
+    color: "#eec47c",
   },
   title: {
     flexGrow: 1,
@@ -48,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     //backgroundColor: "#eec47c",
   },
   toolbarTitle: {
-    width: "200px",
+    width: "150px",
     flexGrow: 1,
     textAlign: "left",
     fontFamily: "Leckerli One",
@@ -57,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "42px",
   },
   toolbarTitleResp: {
-    width: "100px",
+    width: "100%",
     flexGrow: 1,
     textAlign: "left",
     fontFamily: "Leckerli One",
@@ -87,119 +93,127 @@ const useStyles = makeStyles((theme) => ({
     backgroundRepeat: "no-repeat",
     backgroundPosition: "left",
   },
+  navBar: {
+    width: "600px",
+    textAlign: "right",
+  },
   navHide: {
-    display: "none",
+    //display: "none",
   },
 }));
+
+function HideOnScroll(props) {
+  const trigger = useScrollTrigger();
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {props.children}
+    </Slide>
+  );
+}
 
 export default function ButtonAppBar({
   currentUser,
   handleLogIn,
   handleLogout,
   backHome,
+  goToCart,
 }) {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:960px");
-  const [showCart, setShowCart] = useState(false);
-
-  const hideCart = () => {
-    setShowCart(!showCart);
-  };
 
   const cartx = useContext(CartContext);
 
   return (
     <Container className={classes.root}>
-      <AppBar position="fixed" elevation={0} className={classes.appBar}>
-        <Toolbar className={classes.toolbar}>
-          <Container
-            className={matches ? classes.logo : classes.logoResp}
-          ></Container>
-          <Typography
-            color="inherit"
-            noWrap
-            className={
-              matches ? classes.toolbarTitle : classes.toolbarTitleResp
-            }
-          >
-            Los Girasoles
-          </Typography>
-          <nav className={matches ? null : classes.navHide}>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-              onClick={backHome}
-            >
-              Inicio
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            >
-              Quienes somos
-            </Link>
-            <Link
-              variant="button"
-              color="textPrimary"
-              href="#"
-              className={classes.link}
-            >
-              Contacto
-            </Link>
-            {currentUser.id ? (
-              <SimpleMenu
-                currentUser={currentUser}
-                handleLogout={handleLogout}
-              />
-            ) : null}
-            {!currentUser.id ? (
-              <Button
+      <CssBaseline />
+      <HideOnScroll>
+        <AppBar position="absolute" elevation={0} className={classes.appBar}>
+          <Toolbar className={classes.toolbar}>
+            <Box>
+              <Box className={matches ? classes.logo : classes.logoResp}></Box>
+              <Typography
                 color="inherit"
-                variant="outlined"
-                className={classes.link}
-                onClick={currentUser.id ? handleLogout : handleLogIn}
+                //noWrap
+                className={
+                  matches ? classes.toolbarTitle : classes.toolbarTitleResp
+                }
               >
-                {currentUser.id ? "Cerrar Sesion" : "Iniciar Sesion"}
-              </Button>
-            ) : null}
-          </nav>
+                Los Girasoles
+              </Typography>
+            </Box>
+            <Box className={matches ? classes.navBar : classes.navHide}>
+              <Link
+                variant="button"
+                color="textPrimary"
+                href="#"
+                className={classes.link}
+                onClick={backHome}
+              >
+                Inicio
+              </Link>
+              <Link
+                variant="button"
+                color="textPrimary"
+                href="#"
+                className={classes.link}
+              >
+                Quienes somos
+              </Link>
+              <Link
+                variant="button"
+                color="textPrimary"
+                href="#"
+                className={classes.link}
+              >
+                Contacto
+              </Link>
+              {currentUser.id ? (
+                <SimpleMenu
+                  currentUser={currentUser}
+                  handleLogout={handleLogout}
+                />
+              ) : null}
+              {!currentUser.id ? (
+                <Button
+                  color="inherit"
+                  variant="outlined"
+                  className={classes.link}
+                  onClick={currentUser.id ? handleLogout : handleLogIn}
+                >
+                  {!currentUser.id ? "Iniciar Sesion" : null}
+                </Button>
+              ) : null}
 
-          <Link
-            variant="button"
-            color="inherit"
-            className={classes.link}
-            onClick={() => {
-              hideCart();
-            }}
-          >
-            <ShoppingCartOutlinedIcon fontSize="large" />
-            <span style={{ verticalAlign: "middle" }}>
-              ({cartx.cartItemsCount})
-            </span>
-          </Link>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon
-              className={
-                matches ? classes.menuButtonHide : classes.menuButtonDisplay
-              }
-            ></MenuIcon>
-          </IconButton>
-          {showCart ? (
-            <nav>
-              <Cart hideCart={hideCart} />
-            </nav>
-          ) : null}
-        </Toolbar>
-      </AppBar>
+              <Link
+                variant="button"
+                color="inherit"
+                className={classes.link}
+                onClick={() => {
+                  goToCart();
+                }}
+              >
+                <ShoppingCartOutlinedIcon
+                  fontSize="large"
+                  style={{ verticalAlign: "middle" }}
+                />
+                <span style={{ verticalAlign: "middle" }}>
+                  ({cartx.cartItemsCount})
+                </span>
+              </Link>
+              <IconButton
+                //edge="start"
+                className={
+                  matches ? classes.menuButtonHide : classes.menuButtonDisplay
+                }
+                color="inherit"
+                aria-label="menu"
+              >
+                <MenuIcon></MenuIcon>
+              </IconButton>
+            </Box>
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
     </Container>
   );
 }

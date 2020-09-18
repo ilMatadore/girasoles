@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import { useHistory } from "react-router-dom";
 
-export default function SimpleMenu({ currentUser, handleLogout }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+export default function SimpleMenu(props) {
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -17,7 +17,7 @@ export default function SimpleMenu({ currentUser, handleLogout }) {
   };
 
   const history2 = useHistory();
-
+  console.log(props);
   return (
     <>
       <Button
@@ -25,8 +25,13 @@ export default function SimpleMenu({ currentUser, handleLogout }) {
         aria-haspopup="true"
         onClick={handleClick}
         variant="outlined"
+        style={{
+          backgroundColor: "#eec47c",
+          border: "1px solid #eec47c",
+          color: "#235e1b",
+        }}
       >
-        {currentUser.id ? currentUser.first_name : null}
+        {props.currentUser.id ? props.currentUser.first_name : null}
       </Button>
       <Menu
         id="simple-menu"
@@ -46,7 +51,7 @@ export default function SimpleMenu({ currentUser, handleLogout }) {
         <MenuItem
           onClick={() => {
             handleClose();
-            handleLogout();
+            props.handleLogout();
           }}
         >
           Cerrar Sesion

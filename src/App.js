@@ -5,12 +5,15 @@ import { Switch, Route, withRouter, useHistory } from "react-router-dom";
 import CartProvider from "./context/cartContext/cartContext2.jsx";
 
 import ButtonAppBar from "./components/header/header";
+import Header2 from "./components/header/header2";
+
 import Pricing from "./components/Content/content";
 import SignIn from "./components/signIn/signIn";
 import SignUp from "./components/signUp/signUp";
 import Checkout from "./components/checkout/checkout";
 import Footer from "./components/footer/footer";
 import Profile from "./components/profile/profile";
+import Cart from "./components/cart/cart";
 //import TemporaryDrawer from "./components/Drawer/drawer";
 
 function App() {
@@ -46,8 +49,16 @@ function App() {
     history.push("/login");
   };
 
+  const handleProfile = () => {
+    history.push("/profile");
+  };
+
   const backHome = () => {
     history.push("/");
+  };
+
+  const goToCart = () => {
+    history.push("/cart");
   };
 
   const handleRegister = () => {
@@ -82,11 +93,13 @@ function App() {
   return (
     <CartProvider>
       <div className="App">
-        <ButtonAppBar
+        <Header2
           currentUser={currentUser}
           handleLogIn={handleLogIn}
           backHome={backHome}
           handleLogout={handleLogout}
+          goToCart={goToCart}
+          handleProfile={handleProfile}
         />
         <Switch>
           <Route exact path="/" render={() => <Pricing />} />
@@ -109,6 +122,7 @@ function App() {
           />
           <Route exact path="/checkout" component={Checkout} />
           <Route exact path="/profile" component={Profile} />
+          <Route exact path="/cart" component={Cart} />
         </Switch>
 
         <Footer />

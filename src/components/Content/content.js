@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     width: "70%",
     margin: "auto",
-    paddingTop: "275px",
+    paddingTop: "200px",
   },
   homeBoxText: {
     color: "white",
@@ -128,6 +128,7 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontFamily: "Leckerli",
     fontSize: "50px",
+    paddingBottom: "100px",
   },
 }));
 
@@ -228,10 +229,10 @@ const adicionales = [
 export default function Pricing() {
   const matches = useMediaQuery("(min-width:960px)");
   useEffect(() => {
-    AOS.init({
-      duration: 2000,
-    });
     AOS.refresh();
+    AOS.init({
+      duration: 1000,
+    });
   }, []);
 
   const classes = useStyles();
@@ -265,7 +266,7 @@ export default function Pricing() {
             align="center"
             color="textPrimary"
             gutterBottom
-            //data-aos="zoom-out"
+            data-aos="zoom-out"
           >
             Productos Orgánicos<br></br>de la Tierra a tu Hogar
           </Typography>
@@ -390,7 +391,7 @@ export default function Pricing() {
               <Grid item xs={2}>
                 <Paper elevation={0} className={classes.paper2}>
                   <Button
-                    data-aos="fade-down"
+                    data-aos="fade-up"
                     className={classes.additionalAdd}
                     variant={item.buttonVariant}
                     onClick={() => {

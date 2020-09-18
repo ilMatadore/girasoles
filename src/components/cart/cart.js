@@ -2,19 +2,22 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 
+import Image5 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
+
 import { useHistory } from "react-router-dom";
 
+import Container from "@material-ui/core/Container";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import CloseIcon from "@material-ui/icons/Close";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
-    button: {
-      width: "50%",
-      height: "40px",
-      fontSize: "20px",
-    },
+    // button: {
+    //   width: "50%",
+    //   height: "40px",
+    //   fontSize: "20px",
+    // },
     td: {
       paddingTop: "10px",
     },
@@ -26,17 +29,18 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
   },
   cartDropDown: {
-    position: "absolute",
-    width: "280px",
-    height: "340px",
+    marginTop: "200px",
+    //position: "absolute",
+    width: "70%",
+    //height: "340px",
     display: "flex",
     flexDirection: "column",
     padding: "15px",
     border: "1px solid black",
     backgroundColor: "white",
-    top: "90px",
+    //top: "90px",
     right: "40px",
-    zIndex: 5,
+    //zIndex: 5,
     fontSize: "15px",
     color: "black",
     borderRadius: "5px",
@@ -93,81 +97,92 @@ const Cart = ({ hideCart }) => {
   const ctx = useContext(CartContext);
 
   return (
-    <div className={classes.cartDropDown}>
-      <div className={classes.scrollbar}>
-        <table className={classes.blueTable}>
-          <thead>
-            <tr>
-              <th style={{ textAlign: "left" }}>Producto</th>
-              <th style={{ textAlign: "center" }}>Cantidad</th>
-              <th style={{ textAlign: "right" }}>Precio</th>
-              <th style={{ textAlign: "right" }}> </th>
-            </tr>
-          </thead>
-          <tbody>
-            {ctx.cartItems.length === 0 ? (
-              <tr style={{ lineHeight: "120px" }}>
-                <td colSpan="3">Su carro esta vacio</td>
+    <Container
+      maxWidth="xl"
+      style={{
+        backgroundImage: `url(${Image5})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        height: "100vh",
+        verticalAlign: "center",
+        display: "flex",
+      }}
+    >
+      <Container className={classes.cartDropDown}>
+        <div className={classes.scrollbar}>
+          <table className={classes.blueTable}>
+            <thead>
+              <tr>
+                <th style={{ textAlign: "left" }}>Producto</th>
+                <th style={{ textAlign: "center" }}>Cantidad</th>
+                <th style={{ textAlign: "right" }}>Precio</th>
+                <th style={{ textAlign: "right" }}> </th>
               </tr>
-            ) : (
-              ctx.cartItems.map((item) => (
-                <tr key={item.id}>
-                  <td style={{ textAlign: "left" }}>{item.title}</td>
-                  <td style={{ textAlign: "center" }}>
-                    <span
-                      style={{ cursor: "pointer", verticalAlign: "middle" }}
-                      onClick={() => ctx.addItem(item)}
-                    >
-                      <ArrowDropUpIcon />
-                    </span>{" "}
-                    {item.quantity}{" "}
-                    <span
-                      style={{ cursor: "pointer", verticalAlign: "middle" }}
-                      onClick={() => ctx.removeItem(item)}
-                    >
-                      <ArrowDropDownIcon />
-                    </span>
-                  </td>
-                  <td style={{ textAlign: "right", verticalAlign: "middle" }}>
-                    ${item.price}
-                  </td>
-                  <td
-                    style={{ cursor: "pointer" }}
-                    onClick={() => ctx.clearItemFromCart(item)}
-                  >
-                    <CloseIcon fontSize="small" />
-                  </td>
+            </thead>
+            <tbody>
+              {ctx.cartItems.length === 0 ? (
+                <tr style={{ lineHeight: "120px" }}>
+                  <td colSpan="3">Su carro esta vacio</td>
                 </tr>
-              ))
-            )}
-          </tbody>
-        </table>
-      </div>
-      <br />
-      <div style={{ height: "30%" }}>
-        <div className={classes.cartTotals}>
-          Productos en el carro : {ctx.cartItemsCount}
+              ) : (
+                ctx.cartItems.map((item) => (
+                  <tr key={item.id}>
+                    <td style={{ textAlign: "left" }}>{item.title}</td>
+                    <td style={{ textAlign: "center" }}>
+                      <span
+                        style={{ cursor: "pointer", verticalAlign: "middle" }}
+                        onClick={() => ctx.addItem(item)}
+                      >
+                        <ArrowDropUpIcon />
+                      </span>{" "}
+                      {item.quantity}{" "}
+                      <span
+                        style={{ cursor: "pointer", verticalAlign: "middle" }}
+                        onClick={() => ctx.removeItem(item)}
+                      >
+                        <ArrowDropDownIcon />
+                      </span>
+                    </td>
+                    <td style={{ textAlign: "right", verticalAlign: "middle" }}>
+                      ${item.price}
+                    </td>
+                    <td
+                      style={{ cursor: "pointer" }}
+                      onClick={() => ctx.clearItemFromCart(item)}
+                    >
+                      <CloseIcon fontSize="small" />
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
         </div>
-        <div className={classes.cartTotals}>
-          Precio Total : ${ctx.cartTotal}
+        <br />
+        <div style={{ height: "30%" }}>
+          <div className={classes.cartTotals}>
+            Productos en el carro : {ctx.cartItemsCount}
+          </div>
+          <div className={classes.cartTotals}>
+            Precio Total : ${ctx.cartTotal}
+          </div>
         </div>
-      </div>
-      <div className={classes.cartButton} style={{ height: "10%" }}>
-        <button
-          style={{
-            cursor: "pointer",
-            backgroundColor: "#235e1b",
-            color: "yellow",
-          }}
-          onClick={() => {
-            history.push("/checkout");
-            hideCart();
-          }}
-        >
-          Comprar
-        </button>
-      </div>
-    </div>
+        <div className={classes.cartButton} style={{ height: "10%" }}>
+          <button
+            style={{
+              cursor: "pointer",
+              backgroundColor: "#235e1b",
+              color: "yellow",
+            }}
+            onClick={() => {
+              history.push("/checkout");
+            }}
+          >
+            Comprar
+          </button>
+        </div>
+      </Container>
+    </Container>
   );
 };
 export default Cart;

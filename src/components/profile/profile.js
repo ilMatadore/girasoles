@@ -11,12 +11,17 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
+import Image6 from "../../images/ronan-furuta-UeIgm1JZJ_8-unsplash.jpg";
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(16),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "white",
+    padding: "40px",
+    borderRadius: "20px",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -35,150 +40,143 @@ export default function Profile() {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="md">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Mi Perfil
-        </Typography>
-        <div className={classes.form} noValidate>
-          <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="fname"
-                name="firstName"
-                variant="outlined"
-                required
-                fullWidth
-                id="firstName"
-                label="First Name"
-                autoFocus
-              />
+    <Container
+      maxWidth="xl"
+      style={{
+        backgroundImage: `url(${Image6})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+
+        verticalAlign: "center",
+        display: "flex",
+      }}
+    >
+      <Container component="main" maxWidth="md">
+        <CssBaseline />
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Mi Perfil
+          </Typography>
+          <div className={classes.form} noValidate>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="fname"
+                  name="firstName"
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="lname"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  variant="outlined"
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="current-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  name="address1"
+                  label="Address 1"
+                  id="address1"
+                  autoComplete="address1"
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  autoComplete="city"
+                  name="city"
+                  variant="outlined"
+                  fullWidth
+                  id="city"
+                  label="City"
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  autoComplete="postal"
+                  name="postal"
+                  variant="outlined"
+                  fullWidth
+                  id="postal"
+                  label="Postal"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={4}>
+                <TextField
+                  variant="outlined"
+                  fullWidth
+                  name="country"
+                  label="Country"
+                  id="country"
+                  autoComplete="country"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={
+                    <Checkbox value="allowExtraEmails" color="primary" />
+                  }
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                name="confirmPassword"
-                label="Confirm Password"
-                type="confirmPassword"
-                id="confirmPassword"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                name="address1"
-                label="Address 1"
-                id="address1"
-                autoComplete="address1"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                name="address2"
-                label="Address 2"
-                id="address2"
-                autoComplete="address2"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="city"
-                name="city"
-                variant="outlined"
-                fullWidth
-                id="city"
-                label="City"
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <TextField
-                autoComplete="postal"
-                name="postal"
-                variant="outlined"
-                fullWidth
-                id="postal"
-                label="Postal"
-                autoFocus
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                fullWidth
-                name="country"
-                label="Country"
-                id="country"
-                autoComplete="country"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
-              />
-            </Grid>
-          </Grid>
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Guardar Cambios
-          </Button>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Guardar Cambios
+            </Button>
+          </div>
         </div>
-      </div>
-      <Container className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Mis Pedidos
-        </Typography>
+        <Container className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Mis Pedidos
+          </Typography>
+        </Container>
       </Container>
     </Container>
   );
