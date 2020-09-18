@@ -4,7 +4,6 @@ import { Switch, Route, withRouter, useHistory } from "react-router-dom";
 
 import CartProvider from "./context/cartContext/cartContext2.jsx";
 
-import ButtonAppBar from "./components/header/header";
 import Header2 from "./components/header/header2";
 
 import Pricing from "./components/Content/content";
