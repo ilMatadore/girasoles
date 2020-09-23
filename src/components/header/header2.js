@@ -17,6 +17,8 @@ import HomeIcon from "@material-ui/icons/Home";
 import InfoIcon from "@material-ui/icons/Info";
 
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
+import { UserContext } from "../../context/userContext/userContext";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -66,14 +68,25 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header2({
-  goToCart,
-  backHome,
-  currentUser,
+  //currentUser,
+  //handleLogout,
+  //handleProfile,
   handleLogIn,
-  handleLogout,
-  handleProfile,
+  backHome,
+  goToCart,
 }) {
   const cartx = useContext(CartContext);
+  const userCtx = useContext(UserContext);
+  const hist = useHistory();
+
+  const handleLogout = () => {
+    userCtx.userLogout();
+    hist.push("/");
+  };
+
+  const handleProfile = () => {
+    hist.push(`/profile/${userCtx.id}`);
+  };
 
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -110,7 +123,7 @@ export default function Header2({
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {currentUser.id ? (
+      {userCtx.id ? (
         <div>
           <MenuItem
             onClick={() => {
@@ -189,7 +202,7 @@ export default function Header2({
         </IconButton>
         <p>Mi Carro</p>
       </MenuItem>
-      {currentUser.id ? (
+      {userCtx.id ? (
         <div>
           <MenuItem onClick={handleProfileMenuOpen}>
             <IconButton
@@ -200,7 +213,7 @@ export default function Header2({
             >
               <AccountCircle />
             </IconButton>
-            <p>{currentUser.first_name}</p>
+            <p>{userCtx.first_name}</p>
           </MenuItem>
         </div>
       ) : (
@@ -279,6 +292,14 @@ export default function Header2({
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
+              <Badge
+                badgeContent={
+                  userCtx.id
+                    ? `${userCtx.first_name[0]}${userCtx.last_name[0]}`
+                    : null
+                }
+                color="primary"
+              />
               <AccountCircle fontSize="large" />
             </IconButton>
           </div>

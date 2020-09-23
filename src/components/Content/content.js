@@ -396,7 +396,6 @@ export default function Pricing() {
                     variant={item.buttonVariant}
                     onClick={() => {
                       cartCtx.addItem(item);
-                      console.log(item);
                     }}
                   >
                     <AddShoppingCartIcon fontSize="medium" />

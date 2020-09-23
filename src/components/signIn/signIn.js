@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { UserContext } from "../../context/userContext/userContext";
+import { useHistory } from "react-router-dom";
 
 import Image3 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
 
@@ -48,15 +50,46 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({
-  register,
-  submitLogin,
-  handleEmailChange,
-  handlePwdChange,
-}) {
+export default function SignIn({}) {
   const classes = useStyles();
-
   const matches = useMediaQuery("(min-width:960px");
+
+  const uctx = useContext(UserContext);
+  const h = useHistory();
+  const [loginEmail, setLoginEmail] = useState("");
+  const [pwd, setPwd] = useState("");
+
+  const handleEmailChange = (event) => {
+    setLoginEmail(event.target.value);
+  };
+
+  const handlePwdChange = (event) => {
+    setPwd(event.target.value);
+  };
+
+  const handleRegister = () => {
+    h.push("/register");
+  };
+
+  const submitLogin = () => {
+    fetch("http://localhost:3001/", {
+      method: "post",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: loginEmail,
+        password: pwd,
+      }),
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        if (user.id) {
+          uctx.successLogin(user);
+          h.push("/");
+        } else {
+          console.log("mo");
+        }
+      });
+  };
 
   return (
     <Container
@@ -129,7 +162,7 @@ export default function SignIn({
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2" onClick={register}>
+                <Link href="#" variant="body2" onClick={handleRegister}>
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

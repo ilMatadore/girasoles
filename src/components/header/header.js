@@ -18,10 +18,6 @@ import ShoppingCartOutlinedIcon from "@material-ui/icons/ShoppingCartOutlined";
 
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 
-import useScrollTrigger from "@material-ui/core/useScrollTrigger";
-import Slide from "@material-ui/core/Slide";
-import CssBaseline from "@material-ui/core/CssBaseline";
-
 const useStyles = makeStyles((theme) => ({
   "@global": {
     ul: {
@@ -102,15 +98,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function HideOnScroll(props) {
-  const trigger = useScrollTrigger();
-  return (
-    <Slide appear={false} direction="down" in={!trigger}>
-      {props.children}
-    </Slide>
-  );
-}
-
 export default function ButtonAppBar({
   currentUser,
   handleLogIn,
@@ -125,95 +112,92 @@ export default function ButtonAppBar({
 
   return (
     <Container className={classes.root}>
-      <CssBaseline />
-      <HideOnScroll>
-        <AppBar position="absolute" elevation={0} className={classes.appBar}>
-          <Toolbar className={classes.toolbar}>
-            <Box>
-              <Box className={matches ? classes.logo : classes.logoResp}></Box>
-              <Typography
+      <AppBar position="absolute" elevation={0} className={classes.appBar}>
+        <Toolbar className={classes.toolbar}>
+          <Box>
+            <Box className={matches ? classes.logo : classes.logoResp}></Box>
+            <Typography
+              color="inherit"
+              //noWrap
+              className={
+                matches ? classes.toolbarTitle : classes.toolbarTitleResp
+              }
+            >
+              Los Girasoles
+            </Typography>
+          </Box>
+          <Box className={matches ? classes.navBar : classes.navHide}>
+            <Link
+              variant="button"
+              color="textPrimary"
+              href="#"
+              className={classes.link}
+              onClick={backHome}
+            >
+              Inicio
+            </Link>
+            <Link
+              variant="button"
+              color="textPrimary"
+              href="#"
+              className={classes.link}
+            >
+              Quienes somos
+            </Link>
+            <Link
+              variant="button"
+              color="textPrimary"
+              href="#"
+              className={classes.link}
+            >
+              Contacto
+            </Link>
+            {currentUser.id ? (
+              <SimpleMenu
+                currentUser={currentUser}
+                handleLogout={handleLogout}
+              />
+            ) : null}
+            {!currentUser.id ? (
+              <Button
                 color="inherit"
-                //noWrap
-                className={
-                  matches ? classes.toolbarTitle : classes.toolbarTitleResp
-                }
-              >
-                Los Girasoles
-              </Typography>
-            </Box>
-            <Box className={matches ? classes.navBar : classes.navHide}>
-              <Link
-                variant="button"
-                color="textPrimary"
-                href="#"
+                variant="outlined"
                 className={classes.link}
-                onClick={backHome}
+                onClick={currentUser.id ? handleLogout : handleLogIn}
               >
-                Inicio
-              </Link>
-              <Link
-                variant="button"
-                color="textPrimary"
-                href="#"
-                className={classes.link}
-              >
-                Quienes somos
-              </Link>
-              <Link
-                variant="button"
-                color="textPrimary"
-                href="#"
-                className={classes.link}
-              >
-                Contacto
-              </Link>
-              {currentUser.id ? (
-                <SimpleMenu
-                  currentUser={currentUser}
-                  handleLogout={handleLogout}
-                />
-              ) : null}
-              {!currentUser.id ? (
-                <Button
-                  color="inherit"
-                  variant="outlined"
-                  className={classes.link}
-                  onClick={currentUser.id ? handleLogout : handleLogIn}
-                >
-                  {!currentUser.id ? "Iniciar Sesion" : null}
-                </Button>
-              ) : null}
+                {!currentUser.id ? "Iniciar Sesion" : null}
+              </Button>
+            ) : null}
 
-              <Link
-                variant="button"
-                color="inherit"
-                className={classes.link}
-                onClick={() => {
-                  goToCart();
-                }}
-              >
-                <ShoppingCartOutlinedIcon
-                  fontSize="large"
-                  style={{ verticalAlign: "middle" }}
-                />
-                <span style={{ verticalAlign: "middle" }}>
-                  ({cartx.cartItemsCount})
-                </span>
-              </Link>
-              <IconButton
-                //edge="start"
-                className={
-                  matches ? classes.menuButtonHide : classes.menuButtonDisplay
-                }
-                color="inherit"
-                aria-label="menu"
-              >
-                <MenuIcon></MenuIcon>
-              </IconButton>
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
+            <Link
+              variant="button"
+              color="inherit"
+              className={classes.link}
+              onClick={() => {
+                goToCart();
+              }}
+            >
+              <ShoppingCartOutlinedIcon
+                fontSize="large"
+                style={{ verticalAlign: "middle" }}
+              />
+              <span style={{ verticalAlign: "middle" }}>
+                ({cartx.cartItemsCount})
+              </span>
+            </Link>
+            <IconButton
+              //edge="start"
+              className={
+                matches ? classes.menuButtonHide : classes.menuButtonDisplay
+              }
+              color="inherit"
+              aria-label="menu"
+            >
+              <MenuIcon></MenuIcon>
+            </IconButton>
+          </Box>
+        </Toolbar>
+      </AppBar>
     </Container>
   );
 }
