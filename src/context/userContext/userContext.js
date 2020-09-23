@@ -67,7 +67,7 @@ const UserProvider = ({ children }) => {
     setCountry(user.country);
   };
 
-  const [pwd, setPwd] = useState("");
+  const [pwd] = useState("");
   // const [currentUser, setCurrentUser] = useState(UserContext);
   return (
     <UserContext.Provider

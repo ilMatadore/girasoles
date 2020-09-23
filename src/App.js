@@ -1,10 +1,9 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import "./App.css";
 import { Switch, Route, withRouter, useHistory } from "react-router-dom";
 
 import CartProvider from "./context/cartContext/cartContext2.jsx";
 import UserProvider from "./context/userContext/userContext";
-import { UserContext } from "./context/userContext/userContext";
 
 import Header2 from "./components/header/header2";
 

@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignIn({}) {
+export default function SignIn() {
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:960px");
 
