@@ -110,7 +110,7 @@ const useStyles = makeStyles((theme) => ({
     height: "100vh",
     width: "40%",
     margin: "auto",
-    paddingTop: "350px",
+    paddingTop: "250px",
   },
   homeBoxResp: {
     color: "white",
@@ -226,7 +226,7 @@ const adicionales = [
   },
 ];
 
-export default function Pricing() {
+export default function Pricing({ goToCart }) {
   const matches = useMediaQuery("(min-width:960px)");
   useEffect(() => {
     AOS.refresh();
@@ -268,9 +268,19 @@ export default function Pricing() {
             gutterBottom
             data-aos="zoom-out"
           >
-            Productos Orgánicos<br></br>de la Tierra a tu Hogar
+            Productos Orgánicos<br></br>de Nuestra Tierra a tu Hogar
           </Typography>
-          <Button variant="contained" color="primary" href="#canastas">
+          <Button
+            variant="contained"
+            color="primary"
+            href="#canastas"
+            style={{
+              lineHeight: "35px",
+              cursor: "pointer",
+              borderRadius: "20px",
+              maxWidth: "250px",
+            }}
+          >
             Hace tu pedido
           </Button>
         </Box>
@@ -405,6 +415,25 @@ export default function Pricing() {
             </Grid>
           ))}
         </Grid>
+      </Container>
+      <Container>
+        <Button
+          variant="contained"
+          color="primary"
+          align="center"
+          component="button"
+          style={{
+            lineHeight: "35px",
+            cursor: "pointer",
+            borderRadius: "20px",
+            maxWidth: "250px",
+          }}
+          onClick={() => {
+            goToCart();
+          }}
+        >
+          Finalizar compra{" "}
+        </Button>
       </Container>
 
       <Container

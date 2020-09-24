@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     padding: "15px",
-    border: "1px solid black",
+    // border: "1px solid black",
     backgroundColor: "white",
     //top: "90px",
     right: "40px",
@@ -90,7 +90,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Cart = ({ hideCart }) => {
+const Cart = () => {
   const classes = useStyles();
   const history = useHistory();
 

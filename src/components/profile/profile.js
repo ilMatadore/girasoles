@@ -11,8 +11,6 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import Paper from "@material-ui/core/Paper";
-
 import Image6 from "../../images/ronan-furuta-UeIgm1JZJ_8-unsplash.jpg";
 
 import { UserContext } from "../../context/userContext/userContext";
@@ -20,7 +18,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    marginTop: theme.spacing(16),
+    margin: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -263,7 +261,7 @@ export default function Profile() {
                   control={
                     <Checkbox value="allowExtraEmails" color="primary" />
                   }
-                  label="I want to receive inspiration, marketing promotions and updates via email."
+                  label="Deseo recibir promociones por correo electrónico."
                 />
               </Grid>
             </Grid>
@@ -279,18 +277,18 @@ export default function Profile() {
             </Button>
           </div>
         </div>
-        <Container className={classes.paper}>
-          <Avatar className={classes.avatar}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
-            Mis Pedidos
-          </Typography>
-          <Paper elevation={0}>
+        <Container component="main" maxWidth="md">
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Mis Pedidos
+            </Typography>
             <Typography component="h2" variant="h6">
               No tiene historial de pedidos
             </Typography>
-          </Paper>
+          </div>
         </Container>
       </Container>
     </Container>

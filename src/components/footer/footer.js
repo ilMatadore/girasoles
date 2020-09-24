@@ -25,26 +25,15 @@ function Copyright() {
 const footers = [
   {
     title: "Company",
-    description: ["Team", "History", "Contact us", "Locations"],
+    description: ["Team", "History"],
   },
   {
     title: "Features",
-    description: [
-      "Cool stuff",
-      "Random feature",
-      "Team feature",
-      "Developer stuff",
-      "Another one",
-    ],
+    description: ["Cool stuff", "Random feature"],
   },
   {
     title: "Resources",
-    description: [
-      "Resource",
-      "Resource name",
-      "Another resource",
-      "Final resource",
-    ],
+    description: ["Resource", "Resource name"],
   },
   {
     title: "Legal",

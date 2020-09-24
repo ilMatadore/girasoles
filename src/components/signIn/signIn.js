@@ -20,7 +20,7 @@ import Image3 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    margin: theme.spacing(4),
+    margin: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -158,12 +158,12 @@ export default function SignIn() {
             <Grid container>
               <Grid item xs>
                 <Link href="#" variant="body2">
-                  Forgot password?
+                  ¿No recuerdas tu contraseña?
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="#" variant="body2" onClick={handleRegister}>
-                  {"Don't have an account? Sign Up"}
+                  {"No estas registrado aun? Registrate aqui"}
                 </Link>
               </Grid>
             </Grid>

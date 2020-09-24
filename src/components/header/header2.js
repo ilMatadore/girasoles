@@ -18,7 +18,6 @@ import InfoIcon from "@material-ui/icons/Info";
 
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 import { UserContext } from "../../context/userContext/userContext";
-import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     fontFamily: "Leckerli One",
     color: "#eec47c",
-    fontSize: "30px",
+    fontSize: "40px",
   },
   sectionDesktop: {
     display: "none",
@@ -50,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
   },
   logo: {
     [theme.breakpoints.down("sm")]: {
-      height: "50px",
-      width: "50px",
+      height: "60px",
+      width: "60px",
     },
     height: "90px",
     width: "90px",
@@ -74,18 +73,18 @@ export default function Header2({
   handleLogIn,
   backHome,
   goToCart,
+  history,
 }) {
   const cartx = useContext(CartContext);
   const userCtx = useContext(UserContext);
-  const hist = useHistory();
 
   const handleLogout = () => {
     userCtx.userLogout();
-    hist.push("/");
+    history.push("/");
   };
 
   const handleProfile = () => {
-    hist.push(`/profile/${userCtx.id}`);
+    history.push(`/profile/${userCtx.id}`);
   };
 
   const classes = useStyles();

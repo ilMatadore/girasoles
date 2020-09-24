@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    margin: theme.spacing(4),
+    margin: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -51,9 +51,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SignUp(handleLogIn) {
+export default function SignUp() {
   const userCtx = useContext(UserContext);
   const h = useHistory();
+
+  const handleLogIn = () => {
+    h.push("/login");
+  };
 
   const classes = useStyles();
   const matches = useMediaQuery("(min-width:960px)");

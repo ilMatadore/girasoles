@@ -44,6 +44,8 @@ const useStyles = makeStyles((theme) => ({
 function Review() {
   const classes = useStyles();
 
+  const envio = 50;
+
   const context = useContext(CartContext);
   // const totalPrice = context.cart.reduce(
   //   (acc, curr) => acc + curr[0].quantity * curr[0].price,
@@ -70,9 +72,15 @@ function Review() {
           </ListItem>
         ))}
         <ListItem className={classes.listItem}>
+          <ListItemText primary="Envio" />
+          <Typography variant="subtitle1" className={classes.total}>
+            ${envio}
+          </Typography>
+        </ListItem>
+        <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            ${context.cartTotal}
+            ${context.cartTotal + envio}
           </Typography>
         </ListItem>
       </List>

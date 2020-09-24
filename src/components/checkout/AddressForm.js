@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
 
+import { UserContext } from "../../context/userContext/userContext";
+
 export default function AddressForm() {
+  const userCtx = useContext(UserContext);
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -20,6 +24,7 @@ export default function AddressForm() {
             label="First name"
             fullWidth
             autoComplete="fname"
+            defaultValue={userCtx.first_name}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -30,9 +35,10 @@ export default function AddressForm() {
             label="Last name"
             fullWidth
             autoComplete="lname"
+            defaultValue={userCtx.last_name}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6}>
           <TextField
             required
             id="address1"
@@ -40,15 +46,17 @@ export default function AddressForm() {
             label="Address line 1"
             fullWidth
             autoComplete="billing address-line1"
+            defaultValue={userCtx.address}
           />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} sm={6}>
           <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
+            id="phone"
+            name="phone"
+            label="Phone"
             fullWidth
-            autoComplete="billing address-line2"
+            autoComplete="phone"
+            defaultValue={userCtx.phone}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -59,6 +67,7 @@ export default function AddressForm() {
             label="City"
             fullWidth
             autoComplete="billing address-level2"
+            defaultValue={userCtx.city}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -67,6 +76,7 @@ export default function AddressForm() {
             name="state"
             label="State/Province/Region"
             fullWidth
+            defaultValue={userCtx.state}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -77,6 +87,7 @@ export default function AddressForm() {
             label="Zip / Postal code"
             fullWidth
             autoComplete="billing postal-code"
+            defaultValue={userCtx.postal}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -87,6 +98,7 @@ export default function AddressForm() {
             label="Country"
             fullWidth
             autoComplete="billing country"
+            defaultValue={userCtx.country}
           />
         </Grid>
         <Grid item xs={12}>
