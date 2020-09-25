@@ -87,7 +87,7 @@ const useStyles = makeStyles((theme) => ({
   },
   scrollbar: {
     height: "80%",
-    overflow: "scroll",
+    //overflow: "scroll",
     width: "100%",
     overflowX: "hidden",
     "*::-webkit-scrollbar-track": {
@@ -106,7 +106,7 @@ const useStyles = makeStyles((theme) => ({
   cartDesktop: {
     margin: "25px auto",
     width: "50%",
-    maxHeigth: "850px",
+    // maxHeigth: "850px",
   },
   cartMobile: {
     width: "100%",
@@ -144,8 +144,8 @@ const Cart = () => {
         <TableContainer
           component={Paper}
           style={{
-            maxHeight: "850px",
-            marginTop: "150px",
+            // maxHeight: "850px",
+            marginTop: "100px",
             borderRadius: "20px",
           }}
         >

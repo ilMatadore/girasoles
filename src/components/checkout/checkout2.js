@@ -18,7 +18,7 @@ import Container from "@material-ui/core/Container";
 const useStyles = makeStyles((theme) => ({
   root: {
     width: "100%",
-    marginTop: "150px",
+    marginTop: "100px",
     marginBottom: "50px",
   },
   button: {

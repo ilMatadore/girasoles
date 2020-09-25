@@ -20,7 +20,7 @@ import Image3 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -37,16 +37,20 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
   loginBox: {
-    backgroundColor: "#FFFDBA",
+    backgroundColor: "white",
     width: "40%",
     borderRadius: "20px",
     margin: "auto",
+    marginTop: "150px",
+    marginBottom: "50px",
   },
   loginBox2: {
-    backgroundColor: "#FFFDBA",
+    backgroundColor: "white",
     width: "80%",
     borderRadius: "20px",
     margin: "auto",
+    marginTop: "100px",
+    marginBottom: "50px",
   },
 }));
 
@@ -157,14 +161,14 @@ export default function SignIn() {
               Sign In
             </Button>
             <Grid container>
-              <Grid item xs>
+              <Grid item xs={6} style={{ padding: "5px" }}>
                 <Link href="#" variant="body2">
                   ¿No recuerdas tu contraseña?
                 </Link>
               </Grid>
-              <Grid item>
+              <Grid item xs={6} style={{ padding: "5px" }}>
                 <Link href="#" variant="body2" onClick={handleRegister}>
-                  {"No estas registrado aun? Registrate aqui"}
+                  "Registrate aqui"
                 </Link>
               </Grid>
             </Grid>

@@ -21,7 +21,7 @@ import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    margin: theme.spacing(2),
+    margin: theme.spacing(1),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -42,12 +42,16 @@ const useStyles = makeStyles((theme) => ({
     width: "40%",
     borderRadius: "20px",
     margin: "auto",
+    marginTop: "150px",
+    marginBottom: "50px",
   },
   signUpBox2: {
     backgroundColor: "white",
     width: "80%",
     borderRadius: "20px",
     margin: "auto",
+    marginTop: "100px",
+    marginBottom: "50px",
   },
 }));
 

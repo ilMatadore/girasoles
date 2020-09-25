@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   total: {
     fontWeight: "700",
+    fontSize: "1rem",
   },
   title: {
     marginTop: theme.spacing(2),
@@ -34,7 +35,11 @@ function CartReview() {
       </Typography>
       <List disablePadding>
         {context.cartItems.map((product) => (
-          <ListItem className={classes.listItem} key={product.key}>
+          <ListItem
+            className={classes.listItem}
+            key={product.key}
+            alignItems="flex-start"
+          >
             <ListItemText
               primary={product.title}
               secondary={`${product.description} `}
