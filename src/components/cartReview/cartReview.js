@@ -24,8 +24,6 @@ const useStyles = makeStyles((theme) => ({
 function CartReview() {
   const classes = useStyles();
 
-  const envio = 50;
-
   const context = useContext(CartContext);
 
   return (
@@ -57,15 +55,9 @@ function CartReview() {
           </Typography>
         </ListItem>
         <ListItem className={classes.listItem}>
-          <ListItemText primary="Envio" className={classes.total} />
-          <Typography variant="h5" className={classes.total}>
-            ${envio}
-          </Typography>
-        </ListItem>
-        <ListItem className={classes.listItem}>
           <ListItemText primary="Total" className={classes.total} />
           <Typography variant="h5" className={classes.total}>
-            ${context.cartTotal + envio}
+            ${context.cartTotal}
           </Typography>
         </ListItem>
       </List>

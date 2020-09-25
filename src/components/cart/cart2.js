@@ -1,8 +1,13 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 import Image5 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
+
+import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 import { useHistory } from "react-router-dom";
 
@@ -112,9 +117,17 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     margin: "25px auto",
   },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.secondary.main,
+  },
+  paper: {
+    margin: theme.spacing(1),
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  },
 }));
-
-const envio = 50;
 
 const Cart = () => {
   const classes = useStyles();
@@ -149,6 +162,14 @@ const Cart = () => {
             borderRadius: "20px",
           }}
         >
+          <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+              Mi Carro
+            </Typography>
+          </div>
           <Table className={classes.table} aria-label="spanning table">
             <TableHead>
               <TableRow>
@@ -208,16 +229,12 @@ const Cart = () => {
 
               <TableRow>
                 <TableCell rowSpan={3} />
-                <TableCell>Sub Total</TableCell>
-                <TableCell align="right">${ctx.cartTotal}</TableCell>
-              </TableRow>
-              <TableRow>
-                <TableCell>Envio</TableCell>
-                <TableCell align="right">${envio}</TableCell>
+                <TableCell>Productos en el carro</TableCell>
+                <TableCell align="right">{ctx.cartItemsCount}</TableCell>
               </TableRow>
               <TableRow>
                 <TableCell colSpan={1}>Total</TableCell>
-                <TableCell align="right">${ctx.cartTotal + envio}</TableCell>
+                <TableCell align="right">${ctx.cartTotal}</TableCell>
               </TableRow>
             </TableBody>
           </Table>
@@ -225,31 +242,37 @@ const Cart = () => {
             elevation={0}
             style={{ margin: "20px auto", textAligned: "center" }}
           >
-            <button
+            <Button
+              variant="contained"
+              color="primary"
               style={{
+                lineHeight: "35px",
                 cursor: "pointer",
-                backgroundColor: "#235e1b",
-                color: "yellow",
+                borderRadius: "20px",
+                maxWidth: "250px",
               }}
               onClick={() => {
                 history.push("/#canastas");
               }}
             >
               Agregar productos
-            </button>
+            </Button>
             {"       "}
-            <button
+            <Button
+              variant="contained"
+              color="primary"
               style={{
+                lineHeight: "35px",
                 cursor: "pointer",
-                backgroundColor: "#235e1b",
-                color: "yellow",
+                borderRadius: "20px",
+                maxWidth: "250px",
               }}
               onClick={() => {
                 history.push("/checkout");
               }}
             >
               Comprar
-            </button>
+            </Button>
           </Paper>
         </TableContainer>
       </Box>
