@@ -60,6 +60,8 @@ const steps = [
   "Confirmacion de Orden",
 ];
 
+//const stepsResponsive = ["Carro", "Envio", "Pago", "Confirmar"];
+
 function getStepContent(step) {
   switch (step) {
     case 0:
@@ -94,9 +96,10 @@ export default function Checkout() {
         backgroundImage: `url(${Image7})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        //height: "100vh",
         verticalAlign: "center",
         display: "flex",
+        maxHeight: "200vh",
       }}
     >
       <React.Fragment>

@@ -129,7 +129,7 @@ export default function Profile() {
         backgroundImage: `url(${Image6})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-
+        maxHeight: "200vh",
         verticalAlign: "center",
         display: "flex",
       }}

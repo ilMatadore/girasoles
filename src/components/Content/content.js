@@ -245,10 +245,11 @@ export default function Pricing({ goToCart }) {
       <Container
         maxWidth="xl"
         style={{
-          height: "100vh",
+          // height: "100vh",
           backgroundImage: `url(${Image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          maxHeight: "200vh",
         }}
       >
         <Box

@@ -17,6 +17,7 @@ import Pricing from "./components/Content/content";
 import SignIn from "./components/signIn/signIn";
 import SignUp from "./components/signUp/signUp";
 import Checkout from "./components/checkout/checkout";
+import VerticalLinearStepper from "./components/checkout/checkout2";
 import Footer from "./components/footer/footer";
 import Profile from "./components/profile/profile";
 import Cart2 from "./components/cart/cart2";
@@ -39,6 +40,8 @@ const App = () => {
   const handleRegister = () => {
     history.push("/register");
   };
+
+  const screenSize = window.screen.width;
 
   return (
     <UserProvider>
@@ -67,7 +70,11 @@ const App = () => {
                 path="/register"
                 render={() => <SignUp handleLogIn={handleLogIn} />}
               />
-              <Route exact path="/checkout" component={Checkout} />
+              <Route
+                exact
+                path="/checkout"
+                component={screenSize <= 600 ? VerticalLinearStepper : Checkout}
+              />
               <Route path="/profile" component={Profile} />
               <Route exact path="/cart" component={Cart2} />
             </Switch>

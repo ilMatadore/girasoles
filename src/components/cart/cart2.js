@@ -130,9 +130,10 @@ const Cart = () => {
         backgroundImage: `url(${Image5})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
-        //verticalAlign: "center",
+        //height: "100vh",
+        verticalAlign: "center",
         display: "flex",
+        maxHeight: "200vh",
       }}
     >
       <Box

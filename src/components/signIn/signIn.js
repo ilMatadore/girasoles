@@ -98,7 +98,8 @@ export default function SignIn() {
         backgroundImage: `url(${Image3})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        height: "100vh",
+        //height: "100vh",
+        maxHeight: "200vh",
         verticalAlign: "center",
         display: "flex",
       }}
