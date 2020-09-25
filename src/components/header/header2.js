@@ -74,6 +74,7 @@ export default function Header2({
   backHome,
   goToCart,
   history,
+  goToContact,
 }) {
   const cartx = useContext(CartContext);
   const userCtx = useContext(UserContext);
@@ -182,7 +183,12 @@ export default function Header2({
         </IconButton>
         <p>Quienes Somos</p>
       </MenuItem>
-      <MenuItem>
+      <MenuItem
+        onClick={() => {
+          goToContact();
+          handleMenuClose();
+        }}
+      >
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <MailIcon />
         </IconButton>
@@ -268,7 +274,14 @@ export default function Header2({
             <IconButton aria-label="show 4 new mails" color="inherit">
               <InfoIcon fontSize="large" />
             </IconButton>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton
+              aria-label="show 4 new mails"
+              color="inherit"
+              onClick={() => {
+                goToContact();
+                handleMenuClose();
+              }}
+            >
               <MailIcon fontSize="large" />
             </IconButton>
 

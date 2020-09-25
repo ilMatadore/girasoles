@@ -21,6 +21,7 @@ import VerticalLinearStepper from "./components/checkout/checkout2";
 import Footer from "./components/footer/footer";
 import Profile from "./components/profile/profile";
 import Cart2 from "./components/cart/cart2";
+import Contact from "./components/contacto/contact";
 
 const App = () => {
   const history = useHistory();
@@ -35,6 +36,10 @@ const App = () => {
 
   const goToCart = () => {
     history.push("/cart");
+  };
+
+  const goToContact = () => {
+    history.push("/contact");
   };
 
   const handleRegister = () => {
@@ -53,6 +58,7 @@ const App = () => {
               backHome={backHome}
               goToCart={goToCart}
               history={history}
+              goToContact={goToContact}
             />
             <Switch>
               <Route
@@ -77,6 +83,7 @@ const App = () => {
               />
               <Route path="/profile" component={Profile} />
               <Route exact path="/cart" component={Cart2} />
+              <Route exact path="/contact" component={Contact} />
             </Switch>
 
             <Footer />

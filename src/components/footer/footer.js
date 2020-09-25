@@ -24,20 +24,16 @@ function Copyright() {
 
 const footers = [
   {
-    title: "Company",
+    title: "Quienes Somos",
     description: ["Team", "History"],
   },
   {
-    title: "Features",
+    title: "Productos",
     description: ["Cool stuff", "Random feature"],
   },
   {
-    title: "Resources",
+    title: "Contacto",
     description: ["Resource", "Resource name"],
-  },
-  {
-    title: "Legal",
-    description: ["Privacy policy", "Terms of use"],
   },
 ];
 
