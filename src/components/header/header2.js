@@ -27,28 +27,28 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(0),
   },
   title: {
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       fontSize: "60px",
     },
     display: "block",
     fontFamily: "Leckerli One",
-    color: "#eec47c",
+    color: "#f9bc60",
     fontSize: "40px",
   },
   sectionDesktop: {
     display: "none",
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       display: "flex",
     },
   },
   sectionMobile: {
     display: "flex",
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       display: "none",
     },
   },
   logo: {
-    [theme.breakpoints.down("sm")]: {
+    [theme.breakpoints.up("md")]: {
       height: "60px",
       width: "60px",
     },
@@ -75,6 +75,7 @@ export default function Header2({
   goToCart,
   history,
   goToContact,
+  goToQuienes,
 }) {
   const cartx = useContext(CartContext);
   const userCtx = useContext(UserContext);
@@ -173,11 +174,16 @@ export default function Header2({
         }}
       >
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <HomeIcon />
+          <HomeIcon style={{ color: "#f9bc60" }} />
         </IconButton>
         <p>Inicio</p>
       </MenuItem>
-      <MenuItem>
+      <MenuItem
+        onClick={() => {
+          goToQuienes();
+          handleMenuClose();
+        }}
+      >
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <InfoIcon />
         </IconButton>
@@ -271,7 +277,14 @@ export default function Header2({
             >
               <HomeIcon fontSize="large" />
             </IconButton>
-            <IconButton aria-label="show 4 new mails" color="inherit">
+            <IconButton
+              aria-label="show 4 new mails"
+              color="inherit"
+              onClick={() => {
+                goToQuienes();
+                handleMenuClose();
+              }}
+            >
               <InfoIcon fontSize="large" />
             </IconButton>
             <IconButton

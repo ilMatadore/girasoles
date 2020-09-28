@@ -1,6 +1,9 @@
 .App {
   text-align: center;
-  background-color: white;
+  background-color: #abd1c6;
+  /* background-image: url("./images/background3.png");
+  background-repeat: repeat;
+  background-size: contain; */
 }
 
 .App-logo {

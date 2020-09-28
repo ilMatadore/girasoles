@@ -21,6 +21,7 @@ import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
+//import Image10 from "../../images/vegetables.png";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -43,12 +44,14 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 1.5),
   },
   heroContent: {
-    padding: theme.spacing(10, 4, 6),
+    padding: theme.spacing(8, 4, 6),
   },
   cardHeader: {
     backgroundColor:
-      theme.palette.type === "light" ? "#83b55e" : theme.palette.grey[700],
-    color: "#235e1b",
+      theme.palette.type === "light" ? "#004643" : theme.palette.grey[700],
+    color: "#fffffe",
+    // borderTopLeftRadius: "20px",
+    // borderTopRightRadius: "20px",
   },
   cardPricing: {
     display: "flex",
@@ -61,33 +64,35 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(8),
     paddingTop: theme.spacing(3),
     paddingBottom: theme.spacing(3),
-    [theme.breakpoints.up("sm")]: {
+    [theme.breakpoints.up("md")]: {
       paddingTop: theme.spacing(6),
       paddingBottom: theme.spacing(6),
     },
   },
   paper: {
-    padding: theme.spacing(3),
+    padding: theme.spacing(2),
     textAlign: "left",
-    color: theme.palette.text.secondary,
+    color: "#abd1c6",
     verticalAlign: "middle",
-    marginTop: "10px",
-    backgroundColor: "transparent",
+    marginTop: "5px",
+    backgroundColor: "#004643",
+
+    borderRadius: "20px",
   },
 
   paper2: {
     verticalAlign: "middle",
-    marginTop: "20px",
+    marginTop: "10px",
     display: "block",
     backgroundColor: "transparent",
   },
 
   cardAddItem: {
-    borderRadius: "50%",
+    borderRadius: "20px",
     width: "60px",
     height: "60px",
-    backgroundColor: "#235e1b",
-    color: "yellow",
+    backgroundColor: "#f9bc60",
+    color: "#001e1d",
     "&:hover": {
       backgroundColor: "yellow",
       color: "#235e1b",
@@ -95,12 +100,13 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   additionalAdd: {
-    borderRadius: "50%",
-    height: "60px",
-    backgroundColor: "#235e1b",
-    color: "yellow",
+    borderRadius: "20px",
+    //height: "60px",
+    color: "#004643",
+
+    backgroundColor: "#f9bc60",
     "&:hover": {
-      backgroundColor: "yellow",
+      backgroundColor: "#f9bc00",
       color: "#235e1b",
       boxShadow: "0 0 15px #666666",
     },
@@ -138,10 +144,10 @@ const tiers = [
     id: 1,
     price: "800",
     description: [
-      "1 zapallo cabutia",
-      "1 kg papa",
-      "1 kg boniato",
-      "1 atado de verdeo",
+      "zapallo cabutia - 1",
+      "papa - 1 kg",
+      "boniato - 1 kg",
+      "atado de verdeo - 1",
     ],
     buttonText: "Agregar al carro",
     buttonVariant: "contained",
@@ -152,10 +158,10 @@ const tiers = [
     subheader: "La mas vendida",
     price: "900",
     description: [
-      "1 atado de acelga",
-      "1 lechuga",
-      "1 atado de rúcula",
-      "1 atado espinaca",
+      "atado de acelga - 1",
+      "lechuga - 1",
+      "atado de rúcula - 1",
+      "atado espinaca - 1",
     ],
     buttonText: "Agregar al carro",
     buttonVariant: "contained",
@@ -165,10 +171,10 @@ const tiers = [
     id: 3,
     price: "1000",
     description: [
-      "1 zapallo cabutia",
-      "1.5 kg papa",
-      "1 atado de verdeo",
-      "1kg mandarina",
+      "zapallo cabutia - 1",
+      "papa - 1.5 kg ",
+      "atado de verdeo - 1",
+      "mandarina - 1 kg",
     ],
     buttonText: "Agregar al carro",
     buttonVariant: "contained",
@@ -273,13 +279,15 @@ export default function Pricing({ goToCart }) {
           </Typography>
           <Button
             variant="contained"
-            color="primary"
+            //color="primary"
             href="#canastas"
             style={{
               lineHeight: "35px",
               cursor: "pointer",
               borderRadius: "20px",
               maxWidth: "250px",
+              backgroundColor: "#e16162",
+              color: "#f9bc60",
             }}
           >
             Hace tu pedido
@@ -290,11 +298,12 @@ export default function Pricing({ goToCart }) {
       <Container maxWidth="sm" component="main" className={classes.heroContent}>
         <Typography
           id="canastas"
-          component="h1"
-          variant="h2"
+          component="h3"
+          variant="h3"
           align="center"
-          color="textPrimary"
+          //color="textPrimary"
           gutterBottom
+          style={{ color: "#001e1d" }}
         >
           Nuestras Canastas
         </Typography>
@@ -303,6 +312,7 @@ export default function Pricing({ goToCart }) {
           align="center"
           color="textSecondary"
           component="p"
+          style={{ color: "#0f3433" }}
         >
           Selecciona primero una o mas de nuestras canastas de productos
           organicos que mas gustes...
@@ -317,48 +327,102 @@ export default function Pricing({ goToCart }) {
               data-aos="zoom-in"
               item
               key={tier.title}
-              xs={12}
+              xs={9}
               sm={tier.title === "Enterprise" ? 12 : 6}
               md={4}
+              style={{
+                margin: "auto",
+              }}
             >
-              <Card>
+              <Card style={{ borderRadius: "20px" }}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: "center" }}
-                  subheaderTypographyProps={{ align: "center" }}
-                  action={tier.title === "Mix Verde" ? <StarIcon /> : null}
+                  subheaderTypographyProps={{
+                    align: "center",
+                    color: "#e16162",
+                  }}
+                  action={
+                    tier.title === "Mix Verde" ? (
+                      <StarIcon style={{ color: "#e16162" }} />
+                    ) : null
+                  }
                   className={classes.cardHeader}
                 />
-                <CardContent>
+                <CardContent
+                  style={{
+                    backgroundColor: "#D6E2B6",
+                    //   backgroundImage: `url(${Image10})`,
+                    //   backgroundSize: "contain",
+                    //   backgroundPosition: "center",
+                    //   backgroundRepeat: "no-repeat",
+                    //   backgroundOrigin: "content-box",
+                  }}
+                >
                   <div className={classes.cardPricing}>
-                    <Typography component="h2" variant="h3" color="textPrimary">
+                    <Typography
+                      component="h2"
+                      variant="h3"
+                      style={{ color: "#004643" }}
+                    >
                       ${tier.price}
                     </Typography>
-                    <Typography variant="h6" color="textSecondary"></Typography>
+                    <Typography
+                      variant="h6"
+                      style={{ color: "#004643" }}
+                    ></Typography>
                   </div>
-                  <ul>
+                  <ul
+                    style={{
+                      // backgroundColor: "black",
+                      // opacity: "20%",
+                      //borderRadius: "20px",
+                      textTransform: "capitalize",
+                      fontWeigth: "900",
+                    }}
+                  >
                     {tier.description.map((line) => (
                       <Typography
                         component="li"
-                        variant="subtitle1"
+                        variant="h6"
                         align="center"
                         key={line}
+                        style={{
+                          color: "#004643",
+                          fontWeigth: "900",
+                        }}
                       >
                         {line}
                       </Typography>
                     ))}
                   </ul>
                 </CardContent>
-                <CardActions style={{ display: "block" }}>
+                <CardActions
+                  style={{
+                    display: "block",
+                    backgroundColor: "#D6E2B6",
+                  }}
+                >
                   <Button
-                    className={classes.cardAddItem}
-                    variant={tier.buttonVariant}
+                    variant="contained"
+                    href="#canastas"
+                    style={{
+                      lineHeight: "35px",
+                      cursor: "pointer",
+                      borderRadius: "20px",
+                      width: "100px",
+                      color: "#001e1d",
+                      backgroundColor: "#f9bc60",
+                    }}
+                    //className={classes.cardAddItem}
+                    //variant={tier.buttonVariant}
                     onClick={() => {
                       cartCtx.addItem(tier);
                     }}
                   >
-                    <AddShoppingCartIcon fontSize="large" />
+                    {" "}
+                    <AddShoppingCartIcon fontSize="medium" />
                   </Button>
                 </CardActions>
               </Card>
@@ -372,16 +436,16 @@ export default function Pricing({ goToCart }) {
           align="center"
           color="textSecondary"
           component="p"
-          style={{ marginBottom: "20px" }}
+          style={{ marginBottom: "20px", color: "#0f3433" }}
         >
-          Opcionalmente puedes agregar los siguientes productos a tu pedido..
+          Tambien puedes agregar los siguientes productos a tu pedido..
         </Typography>
         <Grid variant="outlined">
           {adicionales.map((item) => (
             <Grid container spacing={2}>
-              <Grid item xs={10} data-aos="fade-up">
+              <Grid item xs={12} data-aos="fade-up">
                 <Paper className={classes.paper}>
-                  <Typography component="a" variant="h5">
+                  <Typography component="a" variant="h6">
                     {item.title}
                   </Typography>{" "}
                   <Typography component="a" variant="a">
@@ -390,27 +454,27 @@ export default function Pricing({ goToCart }) {
                   <span
                     style={{
                       float: "right",
-                      paddingRight: "10px",
                     }}
                   >
-                    <Typography component="a" variant="h5">
+                    <Typography
+                      component="a"
+                      variant="h6"
+                      style={{ paddingRight: "10px" }}
+                    >
                       ${item.price}
                     </Typography>
+
+                    <Button
+                      data-aos="fade-up"
+                      className={classes.additionalAdd}
+                      variant={item.buttonVariant}
+                      onClick={() => {
+                        cartCtx.addItem(item);
+                      }}
+                    >
+                      <AddShoppingCartIcon fontSize="medium" />
+                    </Button>
                   </span>
-                </Paper>
-              </Grid>
-              <Grid item xs={2}>
-                <Paper elevation={0} className={classes.paper2}>
-                  <Button
-                    data-aos="fade-up"
-                    className={classes.additionalAdd}
-                    variant={item.buttonVariant}
-                    onClick={() => {
-                      cartCtx.addItem(item);
-                    }}
-                  >
-                    <AddShoppingCartIcon fontSize="medium" />
-                  </Button>
                 </Paper>
               </Grid>
             </Grid>
@@ -428,6 +492,8 @@ export default function Pricing({ goToCart }) {
             cursor: "pointer",
             borderRadius: "20px",
             maxWidth: "250px",
+            backgroundColor: "#e16162",
+            color: "#f9bc60",
           }}
           onClick={() => {
             goToCart();

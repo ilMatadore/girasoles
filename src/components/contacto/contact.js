@@ -46,7 +46,63 @@ const useStyles = makeStyles((theme) => ({
 export default function Contact() {
   const classes = useStyles();
 
+  let conFirst = "";
+  let conLast = "";
+  let conEmail = "";
+  let conPhone = "";
+  let conMessage = "";
+
+  const contactFirst_Name = (event) => {
+    conFirst = event.target.value;
+    return conFirst;
+  };
+
+  const contactLast_Name = (event) => {
+    conLast = event.target.value;
+    return conLast;
+  };
+
+  const contactEmail = (event) => {
+    conEmail = event.target.value;
+    return conEmail;
+  };
+
+  const contactPhone = (event) => {
+    conPhone = event.target.value;
+    return conPhone;
+  };
+
+  const contactMessage = (event) => {
+    conMessage = event.target.value;
+    return conMessage;
+  };
+
   const userCtx = useContext(UserContext);
+
+  const submitContact = () => {
+    conFirst && conLast && conEmail
+      ? fetch("http://localhost:3001/contact", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            first_name: conFirst,
+            last_name: conLast,
+            email: conEmail,
+            phone: conPhone,
+            message: conMessage,
+          }),
+        })
+      : alert("Missing required information")
+          .then((response) => response.json())
+          .then((user) => {
+            if (user.id) {
+              userCtx.successLogin(user);
+              // h.push("/");
+            } else {
+              console.log("mo");
+            }
+          });
+  };
 
   return (
     <Container
@@ -81,6 +137,8 @@ export default function Contact() {
                   label="Nombre"
                   defaultValue={userCtx.first_name}
                   autoFocus
+                  onChange={contactFirst_Name}
+                  required
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -92,18 +150,21 @@ export default function Contact() {
                   name="lastName"
                   autoComplete="lname"
                   defaultValue={userCtx.last_name}
+                  onChange={contactLast_Name}
+                  required
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
                   variant="outlined"
-                  required
                   fullWidth
                   id="email"
                   label="Correo Electrónico"
                   name="email"
                   autoComplete="email"
-                  value={userCtx.email}
+                  defaultValue={userCtx.email}
+                  onChange={contactEmail}
+                  required
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -115,6 +176,7 @@ export default function Contact() {
                   id="phone"
                   autoComplete="phone"
                   defaultValue={userCtx.phone}
+                  onChange={contactPhone}
                 />
               </Grid>
               <Grid item xs={12} sm={12}>
@@ -137,6 +199,7 @@ export default function Contact() {
                   placeholder="Escriba su mensaje aqui (maximo 200 caracteres)"
                   label="Mensaje"
                   variant="outlined"
+                  onChange={contactMessage}
                 />
               </Grid>
 
@@ -151,6 +214,7 @@ export default function Contact() {
               variant="contained"
               color="primary"
               className={classes.submit}
+              onClick={submitContact}
             >
               Enviar Mensaje
             </Button>

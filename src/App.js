@@ -22,6 +22,7 @@ import Footer from "./components/footer/footer";
 import Profile from "./components/profile/profile";
 import Cart2 from "./components/cart/cart2";
 import Contact from "./components/contacto/contact";
+import Quienes from "./components/quienes/quienes";
 
 const App = () => {
   const history = useHistory();
@@ -42,6 +43,10 @@ const App = () => {
     history.push("/contact");
   };
 
+  const goToQuienes = () => {
+    history.push("/quienes-somos");
+  };
+
   const handleRegister = () => {
     history.push("/register");
   };
@@ -59,6 +64,7 @@ const App = () => {
               goToCart={goToCart}
               history={history}
               goToContact={goToContact}
+              goToQuienes={goToQuienes}
             />
             <Switch>
               <Route
@@ -84,6 +90,7 @@ const App = () => {
               <Route path="/profile" component={Profile} />
               <Route exact path="/cart" component={Cart2} />
               <Route exact path="/contact" component={Contact} />
+              <Route exact path="/quienes-somos" component={Quienes} />
             </Switch>
 
             <Footer />
