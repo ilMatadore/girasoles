@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: "block",
     fontFamily: "Leckerli One",
     color: "#f9bc60",
-    fontSize: "40px",
+    fontSize: "36px",
   },
   sectionDesktop: {
     display: "none",
