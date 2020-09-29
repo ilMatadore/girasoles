@@ -10,18 +10,18 @@ import StarIcon from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Image from "../../images/marisol-benitez-QvkAQTNj4zk-unsplash.jpg";
+import Image1 from "../../images/marisol-benitez-QvkAQTNj4zk-unsplash.jpg";
 import Image2 from "../../images/ja-ma--gOUx23DNks-unsplash.jpg";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import AOS from "aos";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
-
+import Image from "material-ui-image";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 import InstagramIcon from "@material-ui/icons/Instagram";
 import WhatsAppIcon from "@material-ui/icons/WhatsApp";
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
-//import Image10 from "../../images/vegetables.png";
+import Image10 from "../../images/vegetables.png";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -48,8 +48,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cardHeader: {
     backgroundColor:
-      theme.palette.type === "light" ? "#004643" : theme.palette.grey[700],
-    color: "#fffffe",
+      theme.palette.type === "light" ? "#f9bc60" : theme.palette.grey[700],
+    color: "#004643",
     // borderTopLeftRadius: "20px",
     // borderTopRightRadius: "20px",
   },
@@ -72,10 +72,10 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     padding: theme.spacing(2),
     textAlign: "left",
-    color: "#abd1c6",
+    color: "#004643",
     verticalAlign: "middle",
     marginTop: "5px",
-    backgroundColor: "#004643",
+    backgroundColor: "#abd1c6",
 
     borderRadius: "20px",
   },
@@ -135,6 +135,19 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Leckerli",
     fontSize: "50px",
     paddingBottom: "100px",
+  },
+  cardContent1: {
+    backgroundColor: "#abd1c6",
+    maxWidth: "800px",
+    margin: "0 auto",
+    "& cardPricing": {
+      // postition: "absolute",
+      bottom: 0,
+      background: "rgba(0, 0, 0, 0.5)",
+      color: "#f1f1f1",
+      width: "100%",
+      padding: "20px",
+    },
   },
 }));
 
@@ -252,7 +265,7 @@ export default function Pricing({ goToCart }) {
         maxWidth="xl"
         style={{
           // height: "100vh",
-          backgroundImage: `url(${Image})`,
+          backgroundImage: `url(${Image1})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           maxHeight: "200vh",
@@ -303,7 +316,7 @@ export default function Pricing({ goToCart }) {
           align="center"
           //color="textPrimary"
           gutterBottom
-          style={{ color: "#001e1d" }}
+          style={{ color: "#fffffe" }}
         >
           Nuestras Canastas
         </Typography>
@@ -312,7 +325,7 @@ export default function Pricing({ goToCart }) {
           align="center"
           color="textSecondary"
           component="p"
-          style={{ color: "#0f3433" }}
+          style={{ color: "#abd1c6" }}
         >
           Selecciona primero una o mas de nuestras canastas de productos
           organicos que mas gustes...
@@ -351,15 +364,30 @@ export default function Pricing({ goToCart }) {
                   className={classes.cardHeader}
                 />
                 <CardContent
-                  style={{
-                    backgroundColor: "#D6E2B6",
-                    //   backgroundImage: `url(${Image10})`,
-                    //   backgroundSize: "contain",
-                    //   backgroundPosition: "center",
-                    //   backgroundRepeat: "no-repeat",
-                    //   backgroundOrigin: "content-box",
-                  }}
+                  className={classes.cardContent1}
+                  // style={
+                  //   {
+
+                  //     //backgroundColor: "#abd1c6",
+                  //     //   backgroundImage: `url(${Image10})`,
+                  //     //   backgroundSize: "contain",
+                  //     //   backgroundPosition: "center",
+                  //     //   backgroundRepeat: "no-repeat",
+                  //     //   backgroundOrigin: "content-box",
+                  //  }
+                  // }
                 >
+                  <Image
+                    src={Image10}
+                    imageStyle={{
+                      width: "100px",
+                      height: "100px",
+                      margin: "auto",
+                      position: "relative",
+                      backgroundColor: "#abd1c6",
+                    }}
+                    style={{ paddingTop: "10px", backgroundColor: "#abd1c6" }}
+                  />
                   <div className={classes.cardPricing}>
                     <Typography
                       component="h2"
@@ -368,10 +396,6 @@ export default function Pricing({ goToCart }) {
                     >
                       ${tier.price}
                     </Typography>
-                    <Typography
-                      variant="h6"
-                      style={{ color: "#004643" }}
-                    ></Typography>
                   </div>
                   <ul
                     style={{
@@ -401,7 +425,7 @@ export default function Pricing({ goToCart }) {
                 <CardActions
                   style={{
                     display: "block",
-                    backgroundColor: "#D6E2B6",
+                    backgroundColor: "#abd1c6",
                   }}
                 >
                   <Button
@@ -436,7 +460,7 @@ export default function Pricing({ goToCart }) {
           align="center"
           color="textSecondary"
           component="p"
-          style={{ marginBottom: "20px", color: "#0f3433" }}
+          style={{ marginBottom: "20px", color: "#fffffe" }}
         >
           Tambien puedes agregar los siguientes productos a tu pedido..
         </Typography>
@@ -519,6 +543,7 @@ export default function Pricing({ goToCart }) {
           component="p"
           style={{
             lineHeight: "100px",
+            color: "#fffffe",
           }}
         >
           Seguinos en{" "}
@@ -531,6 +556,7 @@ export default function Pricing({ goToCart }) {
           component="p"
           style={{
             lineHeight: "100px",
+            color: "#fffffe",
           }}
         >
           Por consultas{" "}

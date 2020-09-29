@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     padding: "40px",
     borderRadius: "20px",
-    marginTop: "100px",
+    marginTop: "120px",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -78,6 +78,14 @@ export default function Contact() {
   };
 
   const userCtx = useContext(UserContext);
+
+  const cleanForm = () => {
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+  };
 
   const submitContact = () => {
     conFirst && conLast && conEmail
@@ -200,6 +208,7 @@ export default function Contact() {
                   label="Mensaje"
                   variant="outlined"
                   onChange={contactMessage}
+                  id="message"
                 />
               </Grid>
 
@@ -214,7 +223,11 @@ export default function Contact() {
               variant="contained"
               color="primary"
               className={classes.submit}
-              onClick={submitContact}
+              onClick={() => {
+                submitContact();
+                cleanForm();
+                alert("Su mensaje ha sido enviado.");
+              }}
             >
               Enviar Mensaje
             </Button>

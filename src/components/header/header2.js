@@ -64,6 +64,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "transparent",
     color: "white",
   },
+  MuiMenu: {
+    backgroundColor: "#abd1c6",
+  },
 }));
 
 export default function Header2({
@@ -125,8 +128,9 @@ export default function Header2({
       onClose={handleMenuClose}
     >
       {userCtx.id ? (
-        <div>
+        <div style={{ backgroundColor: "#abd1c6" }}>
           <MenuItem
+            style={{ backgroundColor: "#abd1c6" }}
             onClick={() => {
               handleMenuClose();
               handleProfile();
@@ -135,6 +139,7 @@ export default function Header2({
             Mi Perfil
           </MenuItem>
           <MenuItem
+            style={{ backgroundColor: "#abd1c6" }}
             onClick={() => {
               handleMenuClose();
               handleLogout();
@@ -172,35 +177,39 @@ export default function Header2({
           backHome();
           handleMenuClose();
         }}
+        style={{ backgroundColor: "#abd1c6" }}
       >
         <IconButton aria-label="show 4 new mails" color="inherit">
-          <HomeIcon style={{ color: "#f9bc60" }} />
+          <HomeIcon style={{ color: "#004643" }} />
         </IconButton>
         <p>Inicio</p>
       </MenuItem>
       <MenuItem
+        style={{ backgroundColor: "#abd1c6" }}
         onClick={() => {
           goToQuienes();
           handleMenuClose();
         }}
       >
         <IconButton aria-label="show 11 new notifications" color="inherit">
-          <InfoIcon />
+          <InfoIcon style={{ color: "#004643" }} />
         </IconButton>
         <p>Quienes Somos</p>
       </MenuItem>
       <MenuItem
+        style={{ backgroundColor: "#abd1c6" }}
         onClick={() => {
           goToContact();
           handleMenuClose();
         }}
       >
         <IconButton aria-label="show 11 new notifications" color="inherit">
-          <MailIcon />
+          <MailIcon style={{ color: "#004643" }} />
         </IconButton>
         <p>Contacto</p>
       </MenuItem>
       <MenuItem
+        style={{ backgroundColor: "#abd1c6" }}
         onClick={() => {
           goToCart();
           handleMenuClose();
@@ -208,28 +217,32 @@ export default function Header2({
       >
         <IconButton aria-label="show 11 new notifications" color="inherit">
           <Badge badgeContent={cartx.cartItemsCount} color="secondary">
-            <ShoppingCartIcon />
+            <ShoppingCartIcon style={{ color: "#004643" }} />
           </Badge>
         </IconButton>
         <p>Mi Carro</p>
       </MenuItem>
       {userCtx.id ? (
-        <div>
-          <MenuItem onClick={handleProfileMenuOpen}>
+        <div style={{ backgroundColor: "#abd1c6" }}>
+          <MenuItem
+            style={{ backgroundColor: "#abd1c6" }}
+            onClick={handleProfileMenuOpen}
+          >
             <IconButton
               aria-label="account of current user"
               aria-controls="primary-search-account-menu"
               aria-haspopup="true"
               color="inherit"
             >
-              <AccountCircle />
+              <AccountCircle style={{ color: "#004643" }} />
             </IconButton>
             <p>{userCtx.first_name}</p>
           </MenuItem>
         </div>
       ) : (
-        <div>
+        <div style={{ backgroundColor: "#abd1c6" }}>
           <MenuItem
+            style={{ backgroundColor: "#abd1c6" }}
             onClick={() => {
               handleMenuClose();
               handleLogIn();

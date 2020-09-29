@@ -37,12 +37,7 @@ const useStyles = makeStyles((theme) => ({
     //   paddingTop: "10px",
     // },
   },
-  emptyCart: {
-    fontSize: "20px",
-    margin: "50px auto",
-    textAlign: "center",
-    color: "black",
-  },
+
   cartDropDown: {
     marginTop: "200px",
     //position: "absolute",
@@ -173,9 +168,15 @@ const Cart = () => {
           <Table className={classes.table} aria-label="spanning table">
             <TableHead>
               <TableRow>
-                <TableCell align="left">Producto</TableCell>
-                <TableCell align="center">Cantidad</TableCell>
-                <TableCell align="right">Precio</TableCell>
+                <TableCell align="left" style={{ fontSize: "20px" }}>
+                  Producto
+                </TableCell>
+                <TableCell align="center" style={{ fontSize: "20px" }}>
+                  Cantidad
+                </TableCell>
+                <TableCell align="right" style={{ fontSize: "20px" }}>
+                  Precio
+                </TableCell>
                 <TableCell align="center" size="small"></TableCell>
               </TableRow>
             </TableHead>
@@ -185,7 +186,9 @@ const Cart = () => {
                   <TableCell
                     colSpan="3"
                     align="center"
-                    styles={classes.emptyCart}
+                    style={{
+                      fontSize: "20px",
+                    }}
                   >
                     Su carro esta vacio
                   </TableCell>
@@ -193,10 +196,12 @@ const Cart = () => {
               ) : (
                 ctx.cartItems.map((item) => (
                   <TableRow key={item.id}>
-                    <TableCell style={{ textAlign: "left" }}>
+                    <TableCell style={{ textAlign: "left", fontSize: "16px" }}>
                       {item.title}
                     </TableCell>
-                    <TableCell style={{ textAlign: "center" }}>
+                    <TableCell
+                      style={{ textAlign: "center", fontSize: "16px" }}
+                    >
                       <span
                         style={{ cursor: "pointer", verticalAlign: "middle" }}
                         onClick={() => ctx.addItem(item)}
@@ -205,14 +210,22 @@ const Cart = () => {
                       </span>{" "}
                       {item.quantity}{" "}
                       <span
-                        style={{ cursor: "pointer", verticalAlign: "middle" }}
+                        style={{
+                          cursor: "pointer",
+                          verticalAlign: "middle",
+                          fontSize: "16px",
+                        }}
                         onClick={() => ctx.removeItem(item)}
                       >
                         <ArrowDropDownIcon />
                       </span>
                     </TableCell>
                     <TableCell
-                      style={{ textAlign: "right", verticalAlign: "middle" }}
+                      style={{
+                        textAlign: "right",
+                        verticalAlign: "middle",
+                        fontSize: "16px",
+                      }}
                     >
                       ${item.price}
                     </TableCell>
@@ -229,12 +242,41 @@ const Cart = () => {
 
               <TableRow>
                 <TableCell rowSpan={3} />
-                <TableCell>Productos en el carro</TableCell>
-                <TableCell align="right">{ctx.cartItemsCount}</TableCell>
+                <TableCell
+                  style={{
+                    fontSize: "16px",
+                  }}
+                >
+                  Productos en el carro
+                </TableCell>
+                <TableCell
+                  align="right"
+                  style={{
+                    fontSize: "16px",
+                  }}
+                >
+                  {ctx.cartItemsCount}
+                </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell colSpan={1}>Total</TableCell>
-                <TableCell align="right">${ctx.cartTotal}</TableCell>
+                <TableCell
+                  colSpan={1}
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "900",
+                  }}
+                >
+                  Total
+                </TableCell>
+                <TableCell
+                  align="right"
+                  style={{
+                    fontSize: "18px",
+                    fontWeight: "900",
+                  }}
+                >
+                  ${ctx.cartTotal}
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>
