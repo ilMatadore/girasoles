@@ -1,37 +1,37 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Image from "material-ui-image";
+//import { makeStyles } from "@material-ui/core/styles";
+//import Image from "material-ui-image";
 
 //import tileData from "./tileData";
 import Container from "@material-ui/core/Container";
 
 import Image9 from "../../images/nathan-dumlao-m6DAgQyxjAo-unsplash.jpg";
 
-const useStyles = makeStyles((theme) => ({
-  root2: {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    overflow: "hidden",
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: "20px",
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-  },
-  paper: {
-    margin: theme.spacing(12, 0, 4, 0),
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    backgroundColor: "white",
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root2: {
+//     display: "flex",
+//     flexWrap: "wrap",
+//     justifyContent: "space-around",
+//     overflow: "hidden",
+//     backgroundColor: theme.palette.background.paper,
+//     borderRadius: "20px",
+//   },
+//   gridList: {
+//     width: 500,
+//     height: 450,
+//   },
+//   paper: {
+//     margin: theme.spacing(12, 0, 4, 0),
+//     display: "flex",
+//     flexDirection: "column",
+//     alignItems: "center",
+//     backgroundColor: "white",
+//   },
+//   avatar: {
+//     margin: theme.spacing(1),
+//     backgroundColor: theme.palette.secondary.main,
+//   },
+// }));
 
 export default function Contact() {
   //const classes = useStyles();
@@ -49,7 +49,7 @@ export default function Contact() {
       }}
     >
       <Container
-        maxWidth="l"
+        maxWidth="md"
         component="div"
         style={{
           height: "100vh",
