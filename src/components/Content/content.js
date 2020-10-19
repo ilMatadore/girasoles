@@ -561,7 +561,9 @@ export default function Pricing({ goToCart }) {
           }}
         >
           Por consultas{" "}
+          <a href="https://wa.me/59899871743?text=ConsultaWeb%20Los%20Girasoles" target="_blank" rel="noopener noreferrer">
           <WhatsAppIcon fontSize="large" style={{ verticalAlign: "middle" }} />
+          </a>
         </Typography>
       </Container>
       <Container
