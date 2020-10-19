@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 
 //import tileData from "./tileData";
 import Container from "@material-ui/core/Container";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import Image9 from "../../images/nathan-dumlao.jpg";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +33,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Contact() {
-  const matches = useMediaQuery("(min-width:700px)");
   const classes = useStyles();
 
   return (
