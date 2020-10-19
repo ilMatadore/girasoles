@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
@@ -11,8 +11,11 @@ import AddressForm from "./AddressForm";
 import PaymentForm from "./PaymentForm";
 import Review from "./Review";
 import CartReview from "../cartReview/cartReview";
-import Image7 from "../../images/jens-johnsson-_ASTYbCCA1g-unsplash.jpg";
+import Image7 from "../../images/jens.jpg";
 import Container from "@material-ui/core/Container";
+
+import { CartContext } from "../../context/cartContext/cartContext2.jsx";
+import { UserContext } from "../../context/userContext/userContext";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -33,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     borderRadius: "20px",
+    maxHeight: "80vh",
+    overflowY: "scroll",
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(16),
       marginBottom: theme.spacing(6),
@@ -81,6 +86,13 @@ export default function Checkout() {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
+  const cartContext = useContext(CartContext);
+  const userContext = useContext(UserContext);
+
+  console.log(cartContext.cartItems);
+  console.log(userContext)
+  
+
   const handleNext = () => {
     setActiveStep(activeStep + 1);
   };
@@ -88,6 +100,11 @@ export default function Checkout() {
   const handleBack = () => {
     setActiveStep(activeStep - 1);
   };
+
+  const handlePurchase = () => {
+    console.log("compra");
+    handleNext();
+  }
 
   return (
     <Container
@@ -99,7 +116,7 @@ export default function Checkout() {
         //height: "100vh",
         verticalAlign: "center",
         display: "flex",
-        maxHeight: "200vh",
+        height: "100vh",
       }}
     >
       <React.Fragment>
@@ -131,6 +148,9 @@ export default function Checkout() {
                     Su numero de orden es #2001539. Te hemos enviado un correo
                     con la confirmacion de la orden.
                   </Typography>
+                  <Button variant="contained"
+                  color="primary"                  
+                  className={classes.button}>Inicio</Button>
                 </React.Fragment>
               ) : (
                 <React.Fragment>
@@ -144,7 +164,7 @@ export default function Checkout() {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={handleNext}
+                      onClick={activeStep === steps.length - 1 ? handlePurchase : handleNext}
                       className={classes.button}
                     >
                       {activeStep === steps.length - 1 ? "Place order" : "Next"}

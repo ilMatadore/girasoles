@@ -11,6 +11,8 @@ import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 const useStyles = makeStyles((theme) => ({
   listItem: {
     padding: theme.spacing(1, 0),
+    width: "90%",
+    margin: "auto",
   },
   total: {
     fontWeight: "700",
@@ -35,12 +37,13 @@ function CartReview() {
         {context.cartItems.map((product) => (
           <ListItem
             className={classes.listItem}
-            key={product.key}
+            key={product.id}
             alignItems="flex-start"
           >
             <ListItemText
               primary={product.title}
               secondary={`${product.description} `}
+        
             />
             <Typography variant="body2">
               {" "}
@@ -48,12 +51,7 @@ function CartReview() {
             </Typography>
           </ListItem>
         ))}
-        <ListItem className={classes.listItem}>
-          <ListItemText primary="Sub Total" className={classes.total} />
-          <Typography variant="h5" className={classes.total}>
-            ${context.cartTotal}
-          </Typography>
-        </ListItem>
+        
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" className={classes.total} />
           <Typography variant="h5" className={classes.total}>

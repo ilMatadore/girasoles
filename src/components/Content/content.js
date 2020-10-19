@@ -10,8 +10,8 @@ import StarIcon from "@material-ui/icons/StarBorder";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Image1 from "../../images/marisol-benitez-QvkAQTNj4zk-unsplash.jpg";
-import Image2 from "../../images/ja-ma--gOUx23DNks-unsplash.jpg";
+import Image1 from "../../images/marisol.jpg";
+import Image2 from "../../images/ja-ma.jpg";
 import Paper from "@material-ui/core/Paper";
 import Box from "@material-ui/core/Box";
 import AOS from "aos";
@@ -129,6 +129,8 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontFamily: "Leckerli",
     fontSize: "75px",
+    paddingBottom: "100px",
+    textShadow: "2px 2px 4px black",
   },
   homeBoxTextResp: {
     color: "white",
@@ -147,6 +149,7 @@ const useStyles = makeStyles((theme) => ({
       color: "#f1f1f1",
       width: "100%",
       padding: "20px",
+      
     },
   },
 }));
@@ -276,7 +279,6 @@ export default function Pricing({ goToCart }) {
           variant="h2"
           align="center"
           color="textPrimary"
-          gutterBottom
           className={matches ? classes.homeBox : classes.homeBoxResp}
         >
           <Typography
@@ -285,7 +287,6 @@ export default function Pricing({ goToCart }) {
             variant="h2"
             align="center"
             color="textPrimary"
-            gutterBottom
             data-aos="zoom-out"
           >
             Productos Orgánicos<br></br>de Nuestra Tierra a tu Hogar
@@ -347,14 +348,14 @@ export default function Pricing({ goToCart }) {
                 margin: "auto",
               }}
             >
-              <Card style={{ borderRadius: "20px" }}>
+              <Card style={{ borderRadius: "20px", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)", }}>
                 <CardHeader
                   title={tier.title}
                   subheader={tier.subheader}
                   titleTypographyProps={{ align: "center" }}
                   subheaderTypographyProps={{
                     align: "center",
-                    color: "#e16162",
+                    
                   }}
                   action={
                     tier.title === "Mix Verde" ? (
@@ -446,7 +447,7 @@ export default function Pricing({ goToCart }) {
                     }}
                   >
                     {" "}
-                    <AddShoppingCartIcon fontSize="medium" />
+                    <AddShoppingCartIcon/>
                   </Button>
                 </CardActions>
               </Card>
@@ -464,15 +465,15 @@ export default function Pricing({ goToCart }) {
         >
           Tambien puedes agregar los siguientes productos a tu pedido..
         </Typography>
-        <Grid variant="outlined">
+        <Grid variant="outlined" >
           {adicionales.map((item) => (
-            <Grid container spacing={2}>
-              <Grid item xs={12} data-aos="fade-up">
-                <Paper className={classes.paper}>
+            <Grid container spacing={2} key={item.id}>
+              <Grid item xs={12} data-aos="fade-up" >
+                <Paper className={classes.paper} style={{boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)",}}>
                   <Typography component="a" variant="h6">
                     {item.title}
                   </Typography>{" "}
-                  <Typography component="a" variant="a">
+                  <Typography component="a" variant="subtitle2">
                     {item.description}
                   </Typography>
                   <span
@@ -489,14 +490,14 @@ export default function Pricing({ goToCart }) {
                     </Typography>
 
                     <Button
-                      data-aos="fade-up"
+                      // data-aos="fade-up"
                       className={classes.additionalAdd}
                       variant={item.buttonVariant}
                       onClick={() => {
                         cartCtx.addItem(item);
                       }}
                     >
-                      <AddShoppingCartIcon fontSize="medium" />
+                      <AddShoppingCartIcon />
                     </Button>
                   </span>
                 </Paper>
@@ -564,6 +565,7 @@ export default function Pricing({ goToCart }) {
         </Typography>
       </Container>
       <Container
+      component="div"
         maxWidth="xl"
         style={{
           marginTop: "50px",
@@ -572,7 +574,7 @@ export default function Pricing({ goToCart }) {
           backgroundPosition: "center",
           height: "50vh",
         }}
-      ></Container>
+      ><div></div></Container>
     </React.Fragment>
   );
 }

@@ -16,7 +16,7 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 import { UserContext } from "../../context/userContext/userContext";
 import { useHistory } from "react-router-dom";
 
-import Image3 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
+import Image3 from "../../images/inigo.jpg";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -26,15 +26,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(3),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
     width: "80%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(6, 4, 5),
   },
   loginBox: {
     backgroundColor: "white",
@@ -42,15 +42,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     margin: "auto",
     marginTop: "150px",
-    marginBottom: "50px",
+    marginBottom: "280px",
   },
   loginBox2: {
     backgroundColor: "white",
     width: "80%",
     borderRadius: "20px",
     margin: "auto",
-    marginTop: "100px",
-    marginBottom: "50px",
+    marginTop: "120px",
+    marginBottom: "150px",
   },
 }));
 
@@ -70,6 +70,12 @@ export default function SignIn() {
   const handlePwdChange = (event) => {
     setPwd(event.target.value);
   };
+
+  // const handleChange = (event) => {
+  //   const { value, name } = event.target;
+
+  //   setCredentials({ ...userCredentials, [name]: value });
+  // };
 
   const handleRegister = () => {
     h.push("/register");
@@ -103,7 +109,7 @@ export default function SignIn() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         //height: "100vh",
-        maxHeight: "200vh",
+        height: "100vh",
         verticalAlign: "center",
         display: "flex",
       }}
@@ -148,7 +154,7 @@ export default function SignIn() {
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
+              label="Recordarme"
             />
             <Button
               type="submit"
@@ -158,15 +164,15 @@ export default function SignIn() {
               className={classes.submit}
               onClick={submitLogin}
             >
-              Sign In
+              Iniciar Sesion
             </Button>
             <Grid container>
-              <Grid item xs={6} style={{ padding: "5px" }}>
+              <Grid item xs={6} style={{ padding: "3px", textAlign: "left" }}>
                 <Link href="#" variant="body2">
                   ¿No recuerdas tu contraseña?
                 </Link>
               </Grid>
-              <Grid item xs={6} style={{ padding: "5px" }}>
+              <Grid item xs={6} style={{ padding: "3px", textAlign: "right" }}>
                 <Link href="#" variant="body2" onClick={handleRegister}>
                   "Registrate aqui"
                 </Link>

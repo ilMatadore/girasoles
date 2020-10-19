@@ -3,7 +3,7 @@ import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
-import Image5 from "../../images/inigo-de-la-maza-s285sDw5Ikc-unsplash.jpg";
+import Image5 from "../../images/inigo.jpg";
 
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
@@ -141,7 +141,7 @@ const Cart = () => {
         //height: "100vh",
         verticalAlign: "center",
         display: "flex",
-        maxHeight: "200vh",
+        height: "100vh",
       }}
     >
       <Box
@@ -155,6 +155,9 @@ const Cart = () => {
             // maxHeight: "850px",
             marginTop: "100px",
             borderRadius: "20px",
+            height: "80%",
+            
+            
           }}
         >
           <div className={classes.paper}>
@@ -188,6 +191,7 @@ const Cart = () => {
                     align="center"
                     style={{
                       fontSize: "20px",
+                      padding: "100px"
                     }}
                   >
                     Su carro esta vacio

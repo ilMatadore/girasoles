@@ -5,7 +5,7 @@ import React from "react";
 //import tileData from "./tileData";
 import Container from "@material-ui/core/Container";
 
-import Image9 from "../../images/nathan-dumlao-m6DAgQyxjAo-unsplash.jpg";
+import Image9 from "../../images/nathan-dumlao.jpg";
 
 // const useStyles = makeStyles((theme) => ({
 //   root2: {
@@ -52,9 +52,10 @@ export default function Contact() {
         maxWidth="md"
         component="div"
         style={{
-          height: "100vh",
+          height: "75vh",
           display: "block",
           marginTop: "120px",
+          marginBottom: "120px",
           color: "black",
           backgroundColor: "white",
           borderRadius: "20px",

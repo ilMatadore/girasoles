@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import TextareaAutosize from "@material-ui/core/TextareaAutosize";
 
-import Image8 from "../../images/markus-spiske-sFydXGrt5OA-unsplash.jpg";
+import Image8 from "../../images/markus-spiske.jpg";
 
 import { UserContext } from "../../context/userContext/userContext";
 
@@ -119,7 +119,7 @@ export default function Contact() {
         backgroundImage: `url(${Image8})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        maxHeight: "200vh",
+        height: "100vh",
         verticalAlign: "center",
         display: "flex",
       }}
@@ -203,7 +203,7 @@ export default function Contact() {
                   aria-label="minimum height"
                   rowsMin={6}
                   rowsMax={20}
-                  fullWidth
+                  
                   placeholder="Escriba su mensaje aqui (maximo 200 caracteres)"
                   label="Mensaje"
                   variant="outlined"

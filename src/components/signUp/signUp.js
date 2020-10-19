@@ -8,7 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
-import Image4 from "../../images/markus-winkler-HeqXGxnsnX4-unsplash.jpg";
+import Image4 from "../../images/markus.jpg";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -27,15 +27,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   avatar: {
-    margin: theme.spacing(1),
+    margin: theme.spacing(3),
     backgroundColor: theme.palette.secondary.main,
   },
   form: {
-    width: "80%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    width: "90%", // Fix IE 11 issue.
+    marginTop: theme.spacing(2),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
+    margin: theme.spacing(4, 0, 2),
   },
   signUpBox: {
     backgroundColor: "white",
@@ -43,15 +43,15 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     margin: "auto",
     marginTop: "150px",
-    marginBottom: "50px",
+    marginBottom: "100px",
   },
   signUpBox2: {
     backgroundColor: "white",
     width: "80%",
     borderRadius: "20px",
     margin: "auto",
-    marginTop: "100px",
-    marginBottom: "50px",
+    marginTop: "120px",
+    marginBottom: "150px",
   },
 }));
 
@@ -162,7 +162,7 @@ export default function SignUp() {
         backgroundSize: "cover",
         backgroundPosition: "center",
         //height: "100vh",
-        maxHeight: "200vh",
+        height: "100vh",
         verticalAlign: "center",
         display: "flex",
       }}

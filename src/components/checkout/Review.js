@@ -7,6 +7,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Grid from "@material-ui/core/Grid";
 
 import { CartContext } from "../../context/cartContext/cartContext2.jsx";
+import { UserContext } from "../../context/userContext/userContext";
 
 // const products = [
 //   { name: "Product 1", desc: "A nice thing", price: "$9.99" },
@@ -15,13 +16,7 @@ import { CartContext } from "../../context/cartContext/cartContext2.jsx";
 //   { name: "Product 4", desc: "Best thing of all", price: "$14.11" },
 //   { name: "Shipping", desc: "", price: "Free" },
 // ];
-const addresses = [
-  "1 Material-UI Drive",
-  "Reactville",
-  "Anytown",
-  "99999",
-  "USA",
-];
+
 const payments = [
   { name: "Card type", detail: "Visa" },
   { name: "Card holder", detail: "Mr John Smith" },
@@ -46,12 +41,16 @@ function Review() {
 
   const envio = 50;
 
-  const context = useContext(CartContext);
-  // const totalPrice = context.cart.reduce(
-  //   (acc, curr) => acc + curr[0].quantity * curr[0].price,
-  //   0
-  // );
-  console.log(context);
+  const cartContext = useContext(CartContext);
+  const userContext = useContext(UserContext)
+  
+  const addresses = [
+    userContext.address,
+    userContext.city,
+    userContext.postal,
+    userContext.state,
+    userContext.country,
+  ];
 
   return (
     <React.Fragment>
@@ -59,8 +58,8 @@ function Review() {
         Order summary
       </Typography>
       <List disablePadding>
-        {context.cartItems.map((product) => (
-          <ListItem className={classes.listItem} key={product.key}>
+        {cartContext.cartItems.map((product) => (
+          <ListItem className={classes.listItem} key={product.id}>
             <ListItemText
               primary={product.title}
               secondary={`${product.description} `}
@@ -80,7 +79,7 @@ function Review() {
         <ListItem className={classes.listItem}>
           <ListItemText primary="Total" />
           <Typography variant="subtitle1" className={classes.total}>
-            ${context.cartTotal + envio}
+            ${cartContext.cartTotal + envio}
           </Typography>
         </ListItem>
       </List>
@@ -89,7 +88,7 @@ function Review() {
           <Typography variant="h6" gutterBottom className={classes.title}>
             Shipping
           </Typography>
-          <Typography gutterBottom>John Smith</Typography>
+          <Typography gutterBottom>{userContext.first_name} {userContext.last_name}</Typography>
           <Typography gutterBottom>{addresses.join(", ")}</Typography>
         </Grid>
         <Grid item container direction="column" xs={12} sm={6}>

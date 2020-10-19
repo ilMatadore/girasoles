@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     [theme.breakpoints.up("md")]: {
       fontSize: "60px",
+      textShadow: "2px 2px 4px black",
     },
     display: "block",
     fontFamily: "Leckerli One",

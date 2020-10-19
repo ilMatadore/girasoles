@@ -11,10 +11,17 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import Image6 from "../../images/ronan-furuta-UeIgm1JZJ_8-unsplash.jpg";
+import Image6 from "../../images/ronan.jpg";
 
 import { UserContext } from "../../context/userContext/userContext";
 import { useHistory } from "react-router-dom";
+
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -25,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "white",
     padding: "40px",
     borderRadius: "20px",
-    marginTop: "100px",
+    marginTop: "120px",
   },
   avatar: {
     margin: theme.spacing(1),
@@ -122,6 +129,21 @@ export default function Profile() {
         }
       });
   };
+
+  const historial = [
+    {
+      id: 1,
+      orderDate: "12/10/2019",
+      order: "Mix Verde",
+      price: "900",
+    },
+    {
+      id: 2,
+      orderDate: "15/3/2019",
+      order: "Mix Verdura",
+      price: "800",
+    },
+  ];
 
   return (
     <Container
@@ -268,7 +290,6 @@ export default function Profile() {
             </Grid>
             <Button
               type="submit"
-              fullWidth
               variant="contained"
               color="primary"
               className={classes.submit}
@@ -286,9 +307,51 @@ export default function Profile() {
             <Typography component="h1" variant="h5">
               Mis Pedidos
             </Typography>
-            <Typography component="h2" variant="h6">
-              No tiene historial de pedidos
-            </Typography>
+            <Table className={classes.table} aria-label="spanning table">
+              <TableHead>
+                <TableRow>
+                  <TableCell align="left" style={{ fontSize: "20px" }}>
+                    Fecha
+                  </TableCell>
+                  <TableCell align="center" style={{ fontSize: "20px" }}>
+                    Orden
+                  </TableCell>
+                  <TableCell align="right" style={{ fontSize: "20px" }}>
+                    Precio
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              {historial.length > 0 ? (
+                historial.map((orders) => (
+                  <TableBody>
+                    <TableRow key={orders.id}>
+                      <TableCell
+                        style={{ textAlign: "left", fontSize: "16px" }}
+                      >
+                        {orders.orderDate}
+                      </TableCell>
+                      <TableCell
+                        style={{ textAlign: "center", fontSize: "16px" }}
+                      >
+                        {orders.order}
+                      </TableCell>
+                      <TableCell
+                        style={{
+                          textAlign: "right",
+                          fontSize: "16px",
+                        }}
+                      >
+                        ${orders.price}
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                ))
+              ) : (
+                <Typography component="h2" variant="h6">
+                  No tiene historial de pedidos
+                </Typography>
+              )}
+            </Table>
           </div>
         </Container>
       </Container>
