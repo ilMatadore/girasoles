@@ -137,6 +137,7 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Leckerli",
     fontSize: "50px",
     paddingBottom: "100px",
+    textShadow: "2px 2px 4px black",
   },
   cardContent1: {
     backgroundColor: "#abd1c6",
@@ -249,7 +250,9 @@ const adicionales = [
 ];
 
 export default function Pricing({ goToCart }) {
+
   const matches = useMediaQuery("(min-width:960px)");
+
   useEffect(() => {
     AOS.refresh();
     AOS.init({
@@ -267,11 +270,13 @@ export default function Pricing({ goToCart }) {
       <Container
         maxWidth="xl"
         style={{
-          // height: "100vh",
+          height: "100vh",
           backgroundImage: `url(${Image1})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          maxHeight: "200vh",
+          backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",        
+          
         }}
       >
         <Box
@@ -547,8 +552,12 @@ export default function Pricing({ goToCart }) {
             color: "#fffffe",
           }}
         >
-          Seguinos en{" "}
+        Seguinos en{" "}
+         <a href="https://instagram.com/los_girasoles_uy?igshid=9oy5x7cq2tkp" 
+            target="_blank" rel="noopener noreferrer" 
+            style={{'a:visited': {textDecoration: "none"}, color: 'white'}}>
           <InstagramIcon fontSize="large" style={{ verticalAlign: "middle" }} />
+          </a>
         </Typography>
         <Typography
           variant="h5"
@@ -561,7 +570,9 @@ export default function Pricing({ goToCart }) {
           }}
         >
           Por consultas{" "}
-          <a href="https://wa.me/59899871743?text=ConsultaWeb%20Los%20Girasoles" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/59899871743?text=ConsultaWeb%20Los%20Girasoles" 
+             target="_blank" rel="noopener noreferrer"
+            style={{'a:visited': {textDecoration: "none"}, color: 'white'}}>
           <WhatsAppIcon fontSize="large" style={{ verticalAlign: "middle" }} />
           </a>
         </Typography>
@@ -575,6 +586,8 @@ export default function Pricing({ goToCart }) {
           backgroundSize: "cover",
           backgroundPosition: "center",
           height: "50vh",
+          backgroundAttachment: "fixed",
+          backgroundRepeat: "no-repeat",
         }}
       ><div></div></Container>
     </React.Fragment>

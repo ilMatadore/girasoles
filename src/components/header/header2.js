@@ -22,11 +22,13 @@ import { UserContext } from "../../context/userContext/userContext";
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    backgroundColor: "#abd1c6",
   },
   menuButton: {
     marginRight: theme.spacing(0),
   },
   title: {
+    textShadow: "2px 2px 4px black",
     [theme.breakpoints.up("md")]: {
       fontSize: "60px",
       textShadow: "2px 2px 4px black",
@@ -68,6 +70,11 @@ const useStyles = makeStyles((theme) => ({
   MuiMenu: {
     backgroundColor: "#abd1c6",
   },
+
+  Menu : {
+    backgroundColor: "#abd1c6",
+  }
+
 }));
 
 export default function Header2({
@@ -127,6 +134,7 @@ export default function Header2({
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMenuOpen}
       onClose={handleMenuClose}
+      
     >
       {userCtx.id ? (
         <div style={{ backgroundColor: "#abd1c6" }}>
@@ -172,6 +180,8 @@ export default function Header2({
       transformOrigin={{ vertical: "top", horizontal: "right" }}
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
+      
+      
     >
       <MenuItem
         onClick={() => {
